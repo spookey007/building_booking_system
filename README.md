@@ -20,3 +20,4 @@ Next.js + Prisma starter for a builder-grade apartment and shop booking system.
 - `docs/DATABASE_SCHEMA.md`
 - `docs/PROGRESS_TRACKER.md`
 # building_booking_system
+# building_booking_system
