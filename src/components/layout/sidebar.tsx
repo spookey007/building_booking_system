@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   BarChart3,
   Building2,
+  CalendarClock,
   ChevronDown,
   FileText,
   LayoutDashboard,
@@ -35,6 +36,7 @@ const iconMap = {
   Wallet,
   Users,
   Settings,
+  CalendarClock,
 };
 
 export function Sidebar({
@@ -49,15 +51,18 @@ export function Sidebar({
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({
-    reports: pathname.startsWith("/dashboard/reports"),
-  });
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
 
   const submenuMap: Record<string, { key: string; label: string; route: string }[]> = {
     reports: [
       { key: "reports-hub", label: "All reports", route: "/dashboard/reports" },
       { key: "stock-report", label: "Stock report", route: "/dashboard/reports/stock-report" },
       { key: "sales-bookings", label: "Sales & installments", route: "/dashboard/reports/sales-bookings" },
+      {
+        key: "payment-schedule-demo",
+        label: "Payment schedule (demo)",
+        route: "/dashboard/reports/payment-schedule",
+      },
     ],
   };
 
@@ -138,7 +143,9 @@ export function Sidebar({
               item.route === "/dashboard"
                 ? pathname === "/dashboard"
                 : pathname === item.route || pathname.startsWith(`${item.route}/`);
-            const isOpen = openSubmenus[item.key] ?? false;
+            const isOpen =
+              openSubmenus[item.key] ??
+              (pathname === item.route || pathname.startsWith(`${item.route}/`));
             return (
               <motion.div
                 key={item.key}

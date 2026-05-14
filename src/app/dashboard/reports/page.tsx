@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BarChart3, Package, TrendingUp } from "lucide-react";
+import { BarChart3, CalendarClock, Package, TrendingUp } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const reportCards = [
@@ -14,6 +14,12 @@ const reportCards = [
     title: "Sales & installments",
     description: "Sold and booked stock, installment completion, and bookings on committed units.",
     icon: TrendingUp,
+  },
+  {
+    href: "/dashboard/reports/payment-schedule",
+    title: "Payment schedule (demo)",
+    description: "Snapshots from the installment planner: totals by currency, rows saved for this browser session.",
+    icon: CalendarClock,
   },
 ];
 
