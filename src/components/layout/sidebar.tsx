@@ -60,7 +60,7 @@ export function Sidebar({
       { key: "sales-bookings", label: "Sales & installments", route: "/dashboard/reports/sales-bookings" },
       {
         key: "payment-schedule-demo",
-        label: "Payment schedule (demo)",
+        label: "Installment schedule",
         route: "/dashboard/reports/payment-schedule",
       },
     ],

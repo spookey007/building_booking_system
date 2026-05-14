@@ -122,6 +122,12 @@ export const bookingFormSchema = z
     cashPayable: optionalNonNegativeNumber("Cash payable"),
     discountAmount: optionalNonNegativeNumber("Discount"),
     transferCharges: optionalNonNegativeNumber("Transfer charges"),
+    addonParking: optionalNonNegativeNumber("Parking add-on"),
+    addonUtility: optionalNonNegativeNumber("Utility add-on"),
+    addonDocumentation: optionalNonNegativeNumber("Documentation add-on"),
+    addonTax: optionalNonNegativeNumber("Tax add-on"),
+    addonPenalty: optionalNonNegativeNumber("Penalty"),
+    bookingTransferFee: optionalNonNegativeNumber("Booking transfer fee"),
     expectedLoan: optionalNonNegativeNumber("Expected loan"),
     grossTotal: optionalNonNegativeNumber("Gross total"),
     payableCost: optionalNonNegativeNumber("Payable cost"),
@@ -228,13 +234,20 @@ export const bookingFormSchema = z
     const unitPrice = data.priceOfUnit ?? 0;
     const discount = data.discountAmount ?? 0;
     const transfer = data.mode === "TRANSFER" ? (data.transferCharges ?? 0) : 0;
-    const gross = unitPrice + transfer - discount;
+    const addonSum =
+      (data.addonParking ?? 0) +
+      (data.addonUtility ?? 0) +
+      (data.addonDocumentation ?? 0) +
+      (data.addonTax ?? 0) +
+      (data.addonPenalty ?? 0) +
+      (data.bookingTransferFee ?? 0);
+    const gross = unitPrice + transfer + addonSum - discount;
 
     if (gross < 0) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["discountAmount"],
-        message: "Discount cannot be greater than unit price plus transfer charges.",
+        message: "Discount cannot exceed unit price, transfer charges, and add-ons.",
       });
     }
 

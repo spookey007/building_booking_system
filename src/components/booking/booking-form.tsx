@@ -226,6 +226,12 @@ export function BookingForm({
       cashPayable: initialValues?.cashPayable ?? "0",
       discountAmount: initialValues?.discountAmount ?? "0",
       transferCharges: initialValues?.transferCharges ?? "0",
+      addonParking: initialValues?.addonParking ?? "0",
+      addonUtility: initialValues?.addonUtility ?? "0",
+      addonDocumentation: initialValues?.addonDocumentation ?? "0",
+      addonTax: initialValues?.addonTax ?? "0",
+      addonPenalty: initialValues?.addonPenalty ?? "0",
+      bookingTransferFee: initialValues?.bookingTransferFee ?? "0",
       expectedLoan: initialValues?.expectedLoan ?? undefined,
       grossTotal: initialValues?.grossTotal ?? "0",
       payableCost: initialValues?.payableCost ?? "0",
@@ -260,6 +266,12 @@ export function BookingForm({
   const discountAmount = useWatch({ control, name: "discountAmount" });
   const cashPayable = useWatch({ control, name: "cashPayable" });
   const transferCharges = useWatch({ control, name: "transferCharges" });
+  const addonParking = useWatch({ control, name: "addonParking" });
+  const addonUtility = useWatch({ control, name: "addonUtility" });
+  const addonDocumentation = useWatch({ control, name: "addonDocumentation" });
+  const addonTax = useWatch({ control, name: "addonTax" });
+  const addonPenalty = useWatch({ control, name: "addonPenalty" });
+  const bookingTransferFee = useWatch({ control, name: "bookingTransferFee" });
   const showSwitchFields = mode === "SWITCHING";
   const showTransferDate = mode === "TRANSFER";
   const showCancelDate = mode === "CANCEL";
@@ -268,7 +280,20 @@ export function BookingForm({
   const transferAmount = isTransferMode ? parseFormattedNumber(transferCharges) : 0;
   const discountAmountValue = parseFormattedNumber(discountAmount);
   const cashPayableAmount = parseFormattedNumber(cashPayable);
-  const grossTotalAmount = Math.max(0, unitPriceAmount + transferAmount - discountAmountValue);
+  const addonParkingAmt = parseFormattedNumber(addonParking);
+  const addonUtilityAmt = parseFormattedNumber(addonUtility);
+  const addonDocumentationAmt = parseFormattedNumber(addonDocumentation);
+  const addonTaxAmt = parseFormattedNumber(addonTax);
+  const addonPenaltyAmt = parseFormattedNumber(addonPenalty);
+  const bookingTransferFeeAmt = parseFormattedNumber(bookingTransferFee);
+  const addonsTotal =
+    addonParkingAmt +
+    addonUtilityAmt +
+    addonDocumentationAmt +
+    addonTaxAmt +
+    addonPenaltyAmt +
+    bookingTransferFeeAmt;
+  const grossTotalAmount = Math.max(0, unitPriceAmount + transferAmount + addonsTotal - discountAmountValue);
   const payableCostAmount = Math.max(0, grossTotalAmount + cashPayableAmount);
   /** Lock prefilled applicant data; keep CNIC + phone fields editable for further search. */
   const applicantOtherReadOnly = readOnly || applicantLockedFromLookup;
@@ -563,6 +588,12 @@ export function BookingForm({
       cashPayable: formatWithCommas(defaultValues.cashPayable ?? "0"),
       discountAmount: formatWithCommas(defaultValues.discountAmount ?? "0"),
       transferCharges: formatWithCommas(defaultValues.transferCharges ?? "0"),
+      addonParking: formatWithCommas(defaultValues.addonParking ?? "0"),
+      addonUtility: formatWithCommas(defaultValues.addonUtility ?? "0"),
+      addonDocumentation: formatWithCommas(defaultValues.addonDocumentation ?? "0"),
+      addonTax: formatWithCommas(defaultValues.addonTax ?? "0"),
+      addonPenalty: formatWithCommas(defaultValues.addonPenalty ?? "0"),
+      bookingTransferFee: formatWithCommas(defaultValues.bookingTransferFee ?? "0"),
       expectedLoan: defaultValues.expectedLoan === undefined ? undefined : formatWithCommas(defaultValues.expectedLoan),
       grossTotal: formatWithCommas(defaultValues.grossTotal ?? "0"),
       payableCost: formatWithCommas(defaultValues.payableCost ?? "0"),
@@ -607,6 +638,12 @@ export function BookingForm({
     setValue("facing", "", { shouldValidate: true, shouldDirty: true });
     setValue("priceOfUnit", "0", { shouldValidate: true, shouldDirty: true });
     setValue("transferCharges", "0", { shouldValidate: true, shouldDirty: true });
+    setValue("addonParking", "0", { shouldValidate: true, shouldDirty: true });
+    setValue("addonUtility", "0", { shouldValidate: true, shouldDirty: true });
+    setValue("addonDocumentation", "0", { shouldValidate: true, shouldDirty: true });
+    setValue("addonTax", "0", { shouldValidate: true, shouldDirty: true });
+    setValue("addonPenalty", "0", { shouldValidate: true, shouldDirty: true });
+    setValue("bookingTransferFee", "0", { shouldValidate: true, shouldDirty: true });
     setValue("discountAmount", "0", { shouldValidate: true, shouldDirty: true });
     setValue("cashPayable", "0", { shouldValidate: true, shouldDirty: true });
     setValue("grossTotal", "0", { shouldValidate: true, shouldDirty: true });
@@ -977,7 +1014,10 @@ export function BookingForm({
                               key={item.id}
                               type="button"
                               className="flex w-full items-center justify-between border-b border-slate-100 px-3 py-2 text-left last:border-b-0 hover:bg-slate-50"
-                              onClick={() => applyUnitSelection(item)}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                applyUnitSelection(item);
+                              }}
                             >
                               <span className="text-sm font-medium text-slate-800">{item.displayLabel}</span>
                               <span className="text-xs text-slate-500">{item.projectCode}</span>
@@ -1387,7 +1427,7 @@ export function BookingForm({
             {openSections.finance ? (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-3 overflow-hidden">
                 <div className="grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(260px,1fr)]">
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                     <Field
                       id="priceOfUnit"
                       label="Unit price (base)"
@@ -1401,7 +1441,7 @@ export function BookingForm({
                     />
                     <Field
                       id="transferCharges"
-                      label="Transfer charges (+)"
+                      label="Unit transfer charges (+)"
                       type="text"
                       inputMode="decimal"
                       placeholder={isTransferMode ? "Auto-fetched for transfer mode" : "Only applies in transfer mode"}
@@ -1409,6 +1449,97 @@ export function BookingForm({
                       className="bg-slate-50"
                       error={errors.transferCharges?.message as string | undefined}
                       {...register("transferCharges")}
+                    />
+                    <Field
+                      id="addonParking"
+                      label="Parking (+)"
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="0"
+                      readOnly={readOnly}
+                      error={errors.addonParking?.message as string | undefined}
+                      {...register("addonParking", {
+                        onChange: (event) => {
+                          if (readOnly) return;
+                          event.target.value = formatWithCommas(event.target.value);
+                        },
+                      })}
+                    />
+                    <Field
+                      id="addonUtility"
+                      label="Utility (+)"
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="0"
+                      readOnly={readOnly}
+                      error={errors.addonUtility?.message as string | undefined}
+                      {...register("addonUtility", {
+                        onChange: (event) => {
+                          if (readOnly) return;
+                          event.target.value = formatWithCommas(event.target.value);
+                        },
+                      })}
+                    />
+                    <Field
+                      id="addonDocumentation"
+                      label="Documentation (+)"
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="0"
+                      readOnly={readOnly}
+                      error={errors.addonDocumentation?.message as string | undefined}
+                      {...register("addonDocumentation", {
+                        onChange: (event) => {
+                          if (readOnly) return;
+                          event.target.value = formatWithCommas(event.target.value);
+                        },
+                      })}
+                    />
+                    <Field
+                      id="addonTax"
+                      label="Tax add-on (+)"
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="0"
+                      readOnly={readOnly}
+                      error={errors.addonTax?.message as string | undefined}
+                      {...register("addonTax", {
+                        onChange: (event) => {
+                          if (readOnly) return;
+                          event.target.value = formatWithCommas(event.target.value);
+                        },
+                      })}
+                    />
+                    <Field
+                      id="addonPenalty"
+                      label="Penalty (+)"
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="0"
+                      readOnly={readOnly}
+                      error={errors.addonPenalty?.message as string | undefined}
+                      {...register("addonPenalty", {
+                        onChange: (event) => {
+                          if (readOnly) return;
+                          event.target.value = formatWithCommas(event.target.value);
+                        },
+                      })}
+                    />
+                    <Field
+                      id="bookingTransferFee"
+                      label="Transfer fee — new buyer (+)"
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="0"
+                      hint="Use when assigning this booking to another party (ownership transfer)."
+                      readOnly={readOnly}
+                      error={errors.bookingTransferFee?.message as string | undefined}
+                      {...register("bookingTransferFee", {
+                        onChange: (event) => {
+                          if (readOnly) return;
+                          event.target.value = formatWithCommas(event.target.value);
+                        },
+                      })}
                     />
                     <Field
                       id="discountAmount"
@@ -1455,10 +1586,13 @@ export function BookingForm({
                         },
                       })}
                     />
-                    <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600">
+                    <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600 sm:col-span-2 xl:col-span-3">
                       <p className="font-semibold text-slate-800">Invoice logic</p>
-                      <p className="mt-1">Gross Total = Unit Price + Transfer Charges - Discount</p>
-                      <p className="mt-1">Payable Cost = Gross Total + Cash Payable</p>
+                      <p className="mt-1">
+                        Gross total = Unit price + unit transfer charges (transfer mode only) + add-ons (parking,
+                        utility, documentation, tax, penalty, transfer-to-new-buyer fee) − Discount
+                      </p>
+                      <p className="mt-1">Payable cost = Gross total + Cash payable</p>
                     </div>
                   </div>
 
@@ -1470,9 +1604,45 @@ export function BookingForm({
                         <span className="font-medium text-slate-900">{formatWithCommas(unitPriceAmount.toFixed(2))}</span>
                       </div>
                       <div className="flex items-center justify-between gap-3">
-                        <span className="text-slate-600">+ Transfer charges</span>
+                        <span className="text-slate-600">+ Unit transfer charges</span>
                         <span className="font-medium text-slate-900">{formatWithCommas(transferAmount.toFixed(2))}</span>
                       </div>
+                      {addonParkingAmt > 0 ? (
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-slate-600">+ Parking</span>
+                          <span className="font-medium text-slate-900">{formatWithCommas(addonParkingAmt.toFixed(2))}</span>
+                        </div>
+                      ) : null}
+                      {addonUtilityAmt > 0 ? (
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-slate-600">+ Utility</span>
+                          <span className="font-medium text-slate-900">{formatWithCommas(addonUtilityAmt.toFixed(2))}</span>
+                        </div>
+                      ) : null}
+                      {addonDocumentationAmt > 0 ? (
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-slate-600">+ Documentation</span>
+                          <span className="font-medium text-slate-900">{formatWithCommas(addonDocumentationAmt.toFixed(2))}</span>
+                        </div>
+                      ) : null}
+                      {addonTaxAmt > 0 ? (
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-slate-600">+ Tax add-on</span>
+                          <span className="font-medium text-slate-900">{formatWithCommas(addonTaxAmt.toFixed(2))}</span>
+                        </div>
+                      ) : null}
+                      {addonPenaltyAmt > 0 ? (
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-slate-600">+ Penalty</span>
+                          <span className="font-medium text-slate-900">{formatWithCommas(addonPenaltyAmt.toFixed(2))}</span>
+                        </div>
+                      ) : null}
+                      {bookingTransferFeeAmt > 0 ? (
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-slate-600">+ Transfer fee (new buyer)</span>
+                          <span className="font-medium text-slate-900">{formatWithCommas(bookingTransferFeeAmt.toFixed(2))}</span>
+                        </div>
+                      ) : null}
                       <div className="flex items-center justify-between gap-3">
                         <span className="text-slate-600">- Discount</span>
                         <span className="font-medium text-slate-900">{formatWithCommas(discountAmountValue.toFixed(2))}</span>

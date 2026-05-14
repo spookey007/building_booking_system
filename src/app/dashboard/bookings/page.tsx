@@ -143,6 +143,12 @@ export default async function BookingsPage({
           discountAmount: booking.discountAmount != null ? Number(booking.discountAmount) : 0,
           transferCharges:
             booking.mode === "TRANSFER" ? Number(booking.unit.transferCharges ?? 0) : 0,
+          addonParking: Number(booking.addonParking ?? 0),
+          addonUtility: Number(booking.addonUtility ?? 0),
+          addonDocumentation: Number(booking.addonDocumentation ?? 0),
+          addonTax: Number(booking.addonTax ?? 0),
+          addonPenalty: Number(booking.addonPenalty ?? 0),
+          bookingTransferFee: Number(booking.bookingTransferFee ?? 0),
           expectedLoan: undefined,
           grossTotal: booking.grossTotal != null ? Number(booking.grossTotal) : 0,
           payableCost: booking.payableCost != null ? Number(booking.payableCost) : 0,

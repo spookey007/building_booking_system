@@ -21,18 +21,25 @@ export const paymentScheduleInstallmentRowSchema = z.object({
 
 export const paymentScheduleDemoSchema = z
   .object({
-    bookingId: z.string().trim().min(1, "Select a booking or paste its ID."),
+    bookingId: z.string().trim().min(1, "Select a booking."),
     bookingDisplayLabel: z.string().max(280).optional().transform((v) => (v == null ? "" : v.trim())),
     planTitle: z
       .string()
       .max(120)
       .optional()
       .transform((value) => (value == null ? "" : value.trim())),
-    totalAmount: moneyField,
-    currency: z.enum(["PKR", "USD"]),
+    totalAmount: z.coerce.number().finite().min(0, "Contract total is missing for this booking."),
+    currency: z.literal("PKR"),
     rows: z.array(paymentScheduleInstallmentRowSchema).min(1, "Add at least one installment row."),
   })
   .superRefine((data, ctx) => {
+    if (data.rows.length > 0 && data.totalAmount <= 0) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Select a booking with a payable amount.",
+        path: ["totalAmount"],
+      });
+    }
     const sum = data.rows.reduce((acc, row) => acc + row.amount, 0);
     const diff = Math.abs(sum - data.totalAmount);
     if (diff > 0.01) {

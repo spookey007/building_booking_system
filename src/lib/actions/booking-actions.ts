@@ -44,15 +44,38 @@ function toDateOnly(date: Date) {
   return date.toISOString().slice(0, 10);
 }
 
-function calculateFinancials(args: {
-  mode: "REGULAR" | "TRANSFER" | "CANCEL" | "SWITCHING" | "GIFT";
-  unitPrice: number;
-  unitTransferCharges: number;
-  discountAmount: number;
-  cashPayable: number;
-}) {
+type BookingAddonAmounts = {
+  addonParking?: number;
+  addonUtility?: number;
+  addonDocumentation?: number;
+  addonTax?: number;
+  addonPenalty?: number;
+  bookingTransferFee?: number;
+};
+
+function sumBookingAddons(args: BookingAddonAmounts) {
+  return (
+    (args.addonParking ?? 0) +
+    (args.addonUtility ?? 0) +
+    (args.addonDocumentation ?? 0) +
+    (args.addonTax ?? 0) +
+    (args.addonPenalty ?? 0) +
+    (args.bookingTransferFee ?? 0)
+  );
+}
+
+function calculateFinancials(
+  args: {
+    mode: "REGULAR" | "TRANSFER" | "CANCEL" | "SWITCHING" | "GIFT";
+    unitPrice: number;
+    unitTransferCharges: number;
+    discountAmount: number;
+    cashPayable: number;
+  } & BookingAddonAmounts,
+) {
   const transferCharges = args.mode === "TRANSFER" ? args.unitTransferCharges : 0;
-  const grossTotal = args.unitPrice + transferCharges - args.discountAmount;
+  const addonTotal = sumBookingAddons(args);
+  const grossTotal = args.unitPrice + transferCharges + addonTotal - args.discountAmount;
   const payableCost = grossTotal + args.cashPayable;
   return { transferCharges, grossTotal, payableCost };
 }
@@ -243,9 +266,19 @@ export async function submitBookingDraftAction(payload: unknown): Promise<Bookin
   const unitTransferCharges = Number(unit.transferCharges ?? 0);
   const discountAmount = values.discountAmount ?? 0;
   const cashPayable = values.cashPayable ?? 0;
-  const transferCharges = values.mode === "TRANSFER" ? unitTransferCharges : 0;
-  const grossTotal = unitBasePrice + transferCharges - discountAmount;
-  const payableCost = grossTotal + cashPayable;
+  const { grossTotal, payableCost } = calculateFinancials({
+    mode: values.mode,
+    unitPrice: unitBasePrice,
+    unitTransferCharges,
+    discountAmount,
+    cashPayable,
+    addonParking: values.addonParking,
+    addonUtility: values.addonUtility,
+    addonDocumentation: values.addonDocumentation,
+    addonTax: values.addonTax,
+    addonPenalty: values.addonPenalty,
+    bookingTransferFee: values.bookingTransferFee,
+  });
 
   const fieldErrors: Record<string, string[]> = {};
   if (values.priceOfUnit !== undefined && Math.abs(values.priceOfUnit - unitBasePrice) > 0.01) {
@@ -255,7 +288,7 @@ export async function submitBookingDraftAction(payload: unknown): Promise<Bookin
     addFieldError(fieldErrors, "transferCharges", "Transfer charges were updated from latest unit data.");
   }
   if (grossTotal < 0) {
-    addFieldError(fieldErrors, "discountAmount", "Discount cannot exceed unit price plus transfer charges.");
+    addFieldError(fieldErrors, "discountAmount", "Discount cannot exceed unit price, transfer charges, and add-ons.");
   }
   if (payableCost < 0) {
     addFieldError(fieldErrors, "payableCost", "Payable cost cannot be negative.");
@@ -403,6 +436,12 @@ export async function submitBookingDraftAction(payload: unknown): Promise<Bookin
           discountAmount,
           grossTotal,
           payableCost,
+          addonParking: values.addonParking ?? null,
+          addonUtility: values.addonUtility ?? null,
+          addonDocumentation: values.addonDocumentation ?? null,
+          addonTax: values.addonTax ?? null,
+          addonPenalty: values.addonPenalty ?? null,
+          bookingTransferFee: values.bookingTransferFee ?? null,
         },
       });
     });
@@ -471,9 +510,15 @@ export async function updateBookingAction(payload: unknown): Promise<BookingMuta
     unitTransferCharges,
     discountAmount: input.discountAmount,
     cashPayable: input.cashPayable,
+    addonParking: Number(booking.addonParking ?? 0),
+    addonUtility: Number(booking.addonUtility ?? 0),
+    addonDocumentation: Number(booking.addonDocumentation ?? 0),
+    addonTax: Number(booking.addonTax ?? 0),
+    addonPenalty: Number(booking.addonPenalty ?? 0),
+    bookingTransferFee: Number(booking.bookingTransferFee ?? 0),
   });
   if (grossTotal < 0) {
-    return { ok: false, message: "Discount cannot exceed unit price plus transfer charges." };
+    return { ok: false, message: "Discount cannot exceed unit price, transfer charges, and add-ons." };
   }
   if (payableCost < 0) {
     return { ok: false, message: "Payable cost cannot be negative." };
@@ -650,13 +695,23 @@ export async function updateBookingFromFormAction(
   const unitTransferCharges = Number(unit.transferCharges ?? 0);
   const discountAmount = values.discountAmount ?? 0;
   const cashPayable = values.cashPayable ?? 0;
-  const transferCharges = values.mode === "TRANSFER" ? unitTransferCharges : 0;
-  const grossTotal = unitBasePrice + transferCharges - discountAmount;
-  const payableCost = grossTotal + cashPayable;
+  const { grossTotal, payableCost } = calculateFinancials({
+    mode: values.mode,
+    unitPrice: unitBasePrice,
+    unitTransferCharges,
+    discountAmount,
+    cashPayable,
+    addonParking: values.addonParking,
+    addonUtility: values.addonUtility,
+    addonDocumentation: values.addonDocumentation,
+    addonTax: values.addonTax,
+    addonPenalty: values.addonPenalty,
+    bookingTransferFee: values.bookingTransferFee,
+  });
 
   const fieldErrors: Record<string, string[]> = {};
   if (grossTotal < 0) {
-    addFieldError(fieldErrors, "discountAmount", "Discount cannot exceed unit price plus transfer charges.");
+    addFieldError(fieldErrors, "discountAmount", "Discount cannot exceed unit price, transfer charges, and add-ons.");
   }
   if (payableCost < 0) {
     addFieldError(fieldErrors, "payableCost", "Payable cost cannot be negative.");
@@ -805,6 +860,12 @@ export async function updateBookingFromFormAction(
           discountAmount,
           grossTotal,
           payableCost,
+          addonParking: values.addonParking ?? null,
+          addonUtility: values.addonUtility ?? null,
+          addonDocumentation: values.addonDocumentation ?? null,
+          addonTax: values.addonTax ?? null,
+          addonPenalty: values.addonPenalty ?? null,
+          bookingTransferFee: values.bookingTransferFee ?? null,
           notes: existing.notes ?? null,
         },
       });
@@ -908,6 +969,12 @@ export async function transferBookingToNewCustomerAction(
     unitTransferCharges,
     discountAmount,
     cashPayable,
+    addonParking: values.addonParking,
+    addonUtility: values.addonUtility,
+    addonDocumentation: values.addonDocumentation,
+    addonTax: values.addonTax,
+    addonPenalty: values.addonPenalty,
+    bookingTransferFee: values.bookingTransferFee,
   });
 
   let newBookingNo = "";
@@ -935,6 +1002,12 @@ export async function transferBookingToNewCustomerAction(
           discountAmount,
           grossTotal,
           payableCost,
+          addonParking: values.addonParking ?? null,
+          addonUtility: values.addonUtility ?? null,
+          addonDocumentation: values.addonDocumentation ?? null,
+          addonTax: values.addonTax ?? null,
+          addonPenalty: values.addonPenalty ?? null,
+          bookingTransferFee: values.bookingTransferFee ?? null,
           notes: null,
         },
       });
@@ -1092,6 +1165,12 @@ export async function switchBookingToNewUnitAction(
         unitTransferCharges,
         discountAmount,
         cashPayable,
+        addonParking: values.addonParking,
+        addonUtility: values.addonUtility,
+        addonDocumentation: values.addonDocumentation,
+        addonTax: values.addonTax,
+        addonPenalty: values.addonPenalty,
+        bookingTransferFee: values.bookingTransferFee,
       });
       newBookingNo = await generateBookingNo(tx, switchDate);
 
@@ -1115,6 +1194,12 @@ export async function switchBookingToNewUnitAction(
           discountAmount,
           grossTotal,
           payableCost,
+          addonParking: values.addonParking ?? null,
+          addonUtility: values.addonUtility ?? null,
+          addonDocumentation: values.addonDocumentation ?? null,
+          addonTax: values.addonTax ?? null,
+          addonPenalty: values.addonPenalty ?? null,
+          bookingTransferFee: values.bookingTransferFee ?? null,
           notes: null,
         },
       });

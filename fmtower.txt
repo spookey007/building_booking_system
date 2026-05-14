@@ -1,0 +1,45 @@
+on dashboard:
+
+booking trend will show recovery against each booking,
+
+on booking do addons,
+parking,utiltiy,documentation,tax addon, penalty, transfer fees (if booking transferred to another)
+
+if customer was paying for two units,
+if they are unable to manage both they will ask for merge:
+in that case previous unit will be free and vacant,
+1 booking merged into that new unit,
+all cost, and everything like booking, installments
+all previous completed will show up,
+
+transfer will do everything like installment to another customer,
+but will maintain records, of old and new,
+
+
+cancellation, liability on FM towers,
+
+
+add new module called receiving,
+receiving it will be done against, payment schedule for each customer,
+payment method:cash,
+cheque (complete details),
+online payment (received from)
+
+one receiveing can be splited into multiple schedule paynments against multiple bookings of each customer,
+
+customer ledger:
+official accounting and unofficial,
+4 types of ledger,
+
+when extracting, ledger for customer,
+there will be options such as official,
+unofficial, utility and parking,
+for single booking and multiple bookings,
+
+ledger will be for the receiving against booking,
+
+total allowed months:
+60 months,
+
+
+

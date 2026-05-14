@@ -17,8 +17,8 @@ const reportCards = [
   },
   {
     href: "/dashboard/reports/payment-schedule",
-    title: "Payment schedule (demo)",
-    description: "Snapshots from the installment planner: totals by currency, rows saved for this browser session.",
+    title: "Installment schedule",
+    description: "Live installment lines from bookings with plans: filter, sort, and export CSV or PDF for demos.",
     icon: CalendarClock,
   },
 ];

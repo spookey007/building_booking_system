@@ -426,17 +426,27 @@ async function seedDemoUnitsAndBookings() {
       },
     });
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const schedules = [];
     for (let i = 1; i <= months; i += 1) {
       const dueDate = addMonths(opts.bookingDate, i);
-      const status = i <= paidCount ? "PAID" : i === paidCount + 1 ? "PARTIAL" : "PENDING";
+      let status = i <= paidCount ? "PAID" : i === paidCount + 1 ? "PARTIAL" : "PENDING";
+      if (status === "PENDING") {
+        const dueDay = new Date(dueDate);
+        dueDay.setHours(0, 0, 0, 0);
+        if (dueDay < today) {
+          status = "OVERDUE";
+        }
+      }
       const inst = await prisma.paymentInstallment.create({
         data: {
           paymentPlanId: plan.id,
           installmentNo: i,
           dueDate,
           dueAmount: installment,
-          status: status === "PARTIAL" ? "PARTIAL" : status === "PAID" ? "PAID" : "PENDING",
+          status: status === "PARTIAL" ? "PARTIAL" : status === "PAID" ? "PAID" : status === "OVERDUE" ? "OVERDUE" : "PENDING",
         },
       });
       schedules.push(inst);
@@ -559,7 +569,9 @@ async function seedDemoUnitsAndBookings() {
     });
   }
 
-  console.log(`Demo seed: ${unitDefs.length} units, ${customersData.length} customers, bookings DEMO-BKG-001…005.`);
+  console.log(
+    `Demo seed: ${unitDefs.length} units, ${customersData.length} customers, bookings DEMO-BKG-001…005 (with payment plans, receipts, and overdue flags where due dates have passed).`,
+  );
 }
 
 async function main() {

@@ -298,6 +298,12 @@ model Booking {
   discountAmount       Decimal?      @db.Decimal(14, 2)
   grossTotal           Decimal?      @db.Decimal(14, 2)
   payableCost          Decimal?      @db.Decimal(14, 2)
+  addonParking         Decimal?      @db.Decimal(14, 2)
+  addonUtility         Decimal?      @db.Decimal(14, 2)
+  addonDocumentation   Decimal?      @db.Decimal(14, 2)
+  addonTax             Decimal?      @db.Decimal(14, 2)
+  addonPenalty         Decimal?      @db.Decimal(14, 2)
+  bookingTransferFee   Decimal?      @db.Decimal(14, 2)
   notes                String?       @db.VarChar(4000)
   createdAt            DateTime      @default(now())
   updatedAt            DateTime      @updatedAt

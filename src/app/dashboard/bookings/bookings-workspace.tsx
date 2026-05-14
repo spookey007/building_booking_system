@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { CalendarRange, FileDown, PencilLine, Plus, Search, X } from "lucide-react";
+import { CalendarRange, Plus, Search, X } from "lucide-react";
 import {
   switchBookingToNewUnitAction,
   transferBookingToNewCustomerAction,
@@ -13,6 +13,7 @@ import { showError, showSuccess } from "@/lib/toast-helper";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
+import { SelectField } from "@/components/ui/select-field";
 import { BookingForm } from "@/components/booking/booking-form";
 import { BookingsTable, type BookingRow } from "./bookings-table";
 
@@ -37,9 +38,23 @@ export function BookingsWorkspace({ rows, startDate, endDate, projects }: Bookin
   const [showAddModal, setShowAddModal] = useState(false);
   const [viewBooking, setViewBooking] = useState<BookingRow | null>(null);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [modalActionValue, setModalActionValue] = useState("");
   const [range, setRange] = useState({ startDate, endDate });
 
   const titleRange = useMemo(() => `${range.startDate} to ${range.endDate}`, [range.endDate, range.startDate]);
+
+  useEffect(() => {
+    if (viewBooking) setModalActionValue("");
+  }, [viewBooking?.id]);
+
+  const modalActionOptions = useMemo(
+    () => [
+      { value: "", label: "Choose an action…" },
+      { value: "pdf", label: "Download PDF" },
+      ...(isEditMode ? [{ value: "view", label: "Leave edit mode (read-only)" }] : [{ value: "edit", label: "Edit booking" }]),
+    ],
+    [isEditMode],
+  );
 
   const handleFetch = () => {
     if (!range.startDate || !range.endDate) {
@@ -182,50 +197,59 @@ export function BookingsWorkspace({ rows, startDate, endDate, projects }: Bookin
                 </h3>
                 <p className="text-xs text-slate-500">Full booking data in the same layout as add booking modal.</p>
               </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={async () => {
-                    if (!viewBooking) return;
-                    try {
-                      await downloadBookingDocumentPdf(
-                        {
-                          bookingNo: viewBooking.bookingNo,
-                          bookingDate: viewBooking.bookingDate,
-                          customerName: viewBooking.customerName,
-                          unitLabel: viewBooking.unitLabel,
-                          projectCode: viewBooking.projectCode,
-                          mode: viewBooking.mode,
-                          status: viewBooking.status,
-                          unitPrice: viewBooking.unitPrice,
-                          discountAmount: viewBooking.discountAmount,
-                          cashPayable: viewBooking.cashPayable,
-                          grossTotal: viewBooking.grossTotal,
-                          payableCost: viewBooking.payableCost,
-                          notes: viewBooking.notes,
-                          formDefaults: viewBooking.formDefaults,
-                        },
-                        { projectName: projects.find((p) => p.code === viewBooking.projectCode)?.name },
-                      );
-                      showSuccess("Booking PDF downloaded.");
-                    } catch {
-                      showError("Could not generate PDF.");
-                    }
-                  }}
-                >
-                  <FileDown className="mr-2 h-4 w-4" />
-                  Download PDF
-                </Button>
-                {!isEditMode ? (
-                  <Button type="button" variant="secondary" onClick={() => setIsEditMode(true)}>
-                    <PencilLine className="mr-2 h-4 w-4" />
-                    Edit
-                  </Button>
-                ) : null}
+              <div className="flex flex-wrap items-start justify-end gap-2 sm:gap-3">
+                <div className="w-full min-w-0 sm:w-56 sm:flex-1 sm:max-w-xs">
+                  <SelectField
+                    id="bookingModalActions"
+                    label="Actions"
+                    value={modalActionValue}
+                    options={modalActionOptions}
+                    onChange={(event) => {
+                      const v = event.target.value;
+                      const booking = viewBooking;
+                      if (!v || !booking) {
+                        setModalActionValue("");
+                        return;
+                      }
+                      if (v === "pdf") {
+                        void (async () => {
+                          try {
+                            await downloadBookingDocumentPdf(
+                              {
+                                bookingNo: booking.bookingNo,
+                                bookingDate: booking.bookingDate,
+                                customerName: booking.customerName,
+                                unitLabel: booking.unitLabel,
+                                projectCode: booking.projectCode,
+                                mode: booking.mode,
+                                status: booking.status,
+                                unitPrice: booking.unitPrice,
+                                discountAmount: booking.discountAmount,
+                                cashPayable: booking.cashPayable,
+                                grossTotal: booking.grossTotal,
+                                payableCost: booking.payableCost,
+                                notes: booking.notes,
+                                formDefaults: booking.formDefaults,
+                              },
+                              { projectName: projects.find((p) => p.code === booking.projectCode)?.name },
+                            );
+                            showSuccess("Booking PDF downloaded.");
+                          } catch {
+                            showError("Could not generate PDF.");
+                          }
+                        })();
+                      } else if (v === "edit") {
+                        setIsEditMode(true);
+                      } else if (v === "view") {
+                        setIsEditMode(false);
+                      }
+                      setTimeout(() => setModalActionValue(""), 0);
+                    }}
+                  />
+                </div>
                 <button
                   type="button"
-                  className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+                  className="mt-7 shrink-0 rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 sm:mt-8"
                   onClick={() => setViewBooking(null)}
                 >
                   <X className="h-5 w-5" />

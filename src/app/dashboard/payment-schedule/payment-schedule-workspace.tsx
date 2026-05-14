@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
-import { useFieldArray, useForm, type Resolver } from "react-hook-form";
+import { Controller, useFieldArray, useForm, type Control, type Path, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle, CalendarClock, Download, LayoutList, Plus, Save, Search, Trash2, X } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -14,13 +14,24 @@ import { Card } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
 import { SelectField } from "@/components/ui/select-field";
 import { cn } from "@/lib/utils";
+import { formatBookingSearchInput } from "@/lib/cnic-format";
+import {
+  formatPkAmountDisplay,
+  formatPkAmountPlain,
+  formatPkContractNumber,
+  normalizePkAmountOnBlur,
+  parsePkAmountInput,
+} from "@/lib/pk-money-input";
 
 type BookingHit = {
   id: string;
   bookingNo: string;
   customerName: string;
+  customerCnic: string | null;
   unitLabel: string;
   status: string;
+  /** Payable cost (preferred) or gross total from booking. */
+  contractTotal: number;
 };
 
 const INTERVAL_OPTIONS = [
@@ -63,12 +74,14 @@ function formatMoney(amount: number, currency: "PKR" | "USD") {
   }).format(Number.isFinite(amount) ? amount : 0);
 }
 
+const CURRENCY = "PKR" as const;
+
 const defaultValues: PaymentScheduleDemoInput = {
   bookingId: "",
   bookingDisplayLabel: "",
   planTitle: "",
   totalAmount: 0,
-  currency: "PKR",
+  currency: CURRENCY,
   rows: [],
 };
 
@@ -81,6 +94,61 @@ function rowPaid(row: { amount: number; paidAmount?: number }) {
   return Math.min(Math.max(0, p), amt);
 }
 
+function ScheduleAmountCell({
+  name,
+  control,
+  error,
+  className,
+}: {
+  name: Path<PaymentScheduleDemoInput>;
+  control: Control<PaymentScheduleDemoInput>;
+  error?: boolean;
+  className?: string;
+}) {
+  return (
+    <Controller
+      control={control}
+      name={name}
+      render={({ field }) => {
+        const [focused, setFocused] = useState(false);
+        const [draft, setDraft] = useState(formatPkAmountPlain(Number(field.value) || 0));
+
+        useEffect(() => {
+          if (!focused) setDraft(formatPkAmountPlain(Number(field.value) || 0));
+        }, [field.value, focused]);
+
+        return (
+          <input
+            type="text"
+            inputMode="decimal"
+            autoComplete="off"
+            aria-invalid={error || undefined}
+            className={cn(cellInputClass, className, error && "border-rose-400")}
+            value={focused ? draft : formatPkAmountDisplay(Number(field.value) || 0)}
+            onFocus={() => {
+              setFocused(true);
+              setDraft(formatPkAmountPlain(Number(field.value) || 0));
+            }}
+            onChange={(e) => {
+              const next = e.target.value;
+              setDraft(next);
+              const n = parsePkAmountInput(next);
+              if (Number.isFinite(n)) field.onChange(n);
+            }}
+            onBlur={() => {
+              const n = normalizePkAmountOnBlur(draft, Number(field.value) || 0);
+              field.onChange(n);
+              setFocused(false);
+              setDraft(formatPkAmountPlain(n));
+              field.onBlur();
+            }}
+          />
+        );
+      }}
+    />
+  );
+}
+
 export function PaymentScheduleWorkspace() {
   const router = useRouter();
   const [isPdfPending, startPdf] = useTransition();
@@ -89,6 +157,8 @@ export function PaymentScheduleWorkspace() {
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchWrapRef = useRef<HTMLDivElement>(null);
+  const searchDropdownOpen =
+    searchOpen && (searchQuery.trim().length >= 2 || searchLoading);
 
   const [genCount, setGenCount] = useState(8);
   const [genFirstDue, setGenFirstDue] = useState(() => new Date().toISOString().slice(0, 10));
@@ -105,7 +175,6 @@ export function PaymentScheduleWorkspace() {
 
   const rows = watch("rows");
   const totalAmount = watch("totalAmount");
-  const currency = watch("currency");
   const bookingId = watch("bookingId");
   const bookingDisplayLabel = watch("bookingDisplayLabel");
 
@@ -164,7 +233,16 @@ export function PaymentScheduleWorkspace() {
   const pickBooking = useCallback(
     (hit: BookingHit) => {
       setValue("bookingId", hit.id, { shouldValidate: true, shouldDirty: true });
-      setValue("bookingDisplayLabel", `${hit.bookingNo} · ${hit.customerName} · ${hit.unitLabel}`, {
+      setValue("currency", CURRENCY, { shouldValidate: true, shouldDirty: true });
+      const contract = Number(hit.contractTotal);
+      if (!Number.isFinite(contract) || contract <= 0) {
+        setValue("totalAmount", 0, { shouldValidate: true, shouldDirty: true });
+        showError("This booking has no payable amount on file (payable / gross).");
+      } else {
+        setValue("totalAmount", contract, { shouldValidate: true, shouldDirty: true });
+      }
+      const cnicPart = hit.customerCnic?.trim() ? ` · ${hit.customerCnic.trim()}` : "";
+      setValue("bookingDisplayLabel", `${hit.bookingNo} · ${hit.customerName}${cnicPart} · ${hit.unitLabel}`, {
         shouldValidate: true,
         shouldDirty: true,
       });
@@ -175,18 +253,32 @@ export function PaymentScheduleWorkspace() {
     [setValue],
   );
 
+  /** Full 13-digit CNIC (formatted or raw): single hit auto-links booking. */
+  useEffect(() => {
+    if (searchLoading || searchHits.length !== 1) return;
+    const digits = searchQuery.replace(/\D/g, "");
+    if (digits.length !== 13) return;
+    pickBooking(searchHits[0]);
+  }, [searchLoading, searchHits, searchQuery, pickBooking]);
+
   const clearBooking = useCallback(() => {
     setValue("bookingId", "", { shouldValidate: true });
     setValue("bookingDisplayLabel", "", { shouldValidate: true });
+    setValue("totalAmount", 0, { shouldValidate: true, shouldDirty: true });
+    setValue("currency", CURRENCY, { shouldValidate: true });
     setSearchQuery("");
     setSearchHits([]);
   }, [setValue]);
 
   const generateRows = () => {
     const count = Math.min(60, Math.max(1, Math.round(Number(genCount))));
+    if (!bookingId?.trim()) {
+      showError("Select a booking first.");
+      return;
+    }
     const contract = Number(totalAmount);
     if (!Number.isFinite(contract) || contract <= 0) {
-      showError("Enter a contract total first.");
+      showError("This booking has no contract total on file.");
       return;
     }
     if (!genFirstDue) {
@@ -235,8 +327,8 @@ export function PaymentScheduleWorkspace() {
         <div className="min-w-0 space-y-1">
           <h2 className="text-2xl font-bold tracking-tight text-slate-900">Payment schedule</h2>
           <p className="text-sm text-slate-600">
-            Search bookings by number or name (nothing loads until you type). One screen: contract, rows, paid vs pending,
-            then export or save for reports.
+            Search by booking no., customer name, or CNIC (13 digits: XXXXX-XXXXXXX-X). You can type only the last few
+            digits of a CNIC to find a match; nothing loads until you type at least two characters.
           </p>
         </div>
         <Button
@@ -255,18 +347,18 @@ export function PaymentScheduleWorkspace() {
         <section aria-label="Schedule summary">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             <StatTile label="Installment rows" value={String(scheduleStats.rowCount)} hint="Lines in grid" />
-            <StatTile label="Total due (rows)" value={formatMoney(scheduleStats.totalDue, currency)} hint="Sum of row amounts" />
-            <StatTile label="Total paid" value={formatMoney(scheduleStats.totalPaid, currency)} hint="Sum of paid column" />
-            <StatTile label="Pending" value={formatMoney(scheduleStats.pending, currency)} hint="Due minus paid" />
+            <StatTile label="Total due (rows)" value={formatMoney(scheduleStats.totalDue, CURRENCY)} hint="Sum of row amounts" />
+            <StatTile label="Total paid" value={formatMoney(scheduleStats.totalPaid, CURRENCY)} hint="Sum of paid column" />
+            <StatTile label="Pending" value={formatMoney(scheduleStats.pending, CURRENCY)} hint="Due minus paid" />
             <StatTile
               label="Upcoming"
-              value={scheduleStats.upcomingAmount != null ? formatMoney(scheduleStats.upcomingAmount, currency) : "—"}
+              value={scheduleStats.upcomingAmount != null ? formatMoney(scheduleStats.upcomingAmount, CURRENCY) : "—"}
               hint={scheduleStats.upcomingDate ? `Due ${scheduleStats.upcomingDate}` : "All rows settled"}
               className="col-span-2 sm:col-span-1 lg:col-span-2"
             />
             <StatTile
               label="Contract"
-              value={formatMoney(scheduleStats.contract, currency)}
+              value={formatMoney(scheduleStats.contract, CURRENCY)}
               hint={
                 Math.abs(scheduleStats.balanceVsContract) <= 0.02
                   ? "Matches row total"
@@ -279,9 +371,14 @@ export function PaymentScheduleWorkspace() {
 
         {/* Booking + contract — single band */}
         <section className="space-y-4 border-t border-slate-200/80 pt-5">
-            <div className="grid gap-4 lg:grid-cols-12 lg:items-end">
-              <input type="hidden" {...register("bookingDisplayLabel")} />
-            <div className="lg:col-span-5" ref={searchWrapRef}>
+          <div className="grid grid-cols-1 gap-x-4 gap-y-5 lg:grid-cols-12 lg:items-start">
+            <input type="hidden" {...register("bookingDisplayLabel")} />
+            <input type="hidden" {...register("bookingId")} />
+            <input type="hidden" {...register("currency")} />
+            <div
+              ref={searchWrapRef}
+              className={cn("relative z-20 min-w-0 lg:col-span-5", searchDropdownOpen && "pb-60")}
+            >
               <label className="mb-1.5 block text-sm font-semibold text-slate-700">Booking</label>
               <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
@@ -290,10 +387,10 @@ export function PaymentScheduleWorkspace() {
                 <input
                   type="search"
                   autoComplete="off"
-                  placeholder="Type booking no., customer, or CNIC (min 2 characters)…"
+                  placeholder="Booking no., name, or CNIC (suffix digits work, e.g. …-1234567-1)…"
                   value={searchQuery}
                   onChange={(e) => {
-                    setSearchQuery(e.target.value);
+                    setSearchQuery(formatBookingSearchInput(e.target.value));
                     setSearchOpen(true);
                   }}
                   onFocus={() => setSearchOpen(true)}
@@ -316,7 +413,8 @@ export function PaymentScheduleWorkspace() {
                         >
                           <span className="font-semibold text-slate-900">{hit.bookingNo}</span>
                           <span className="text-xs text-slate-600">
-                            {hit.customerName} · {hit.unitLabel}
+                            {hit.customerName}
+                            {hit.customerCnic ? ` · ${hit.customerCnic}` : ""} · {hit.unitLabel}
                           </span>
                         </button>
                       ))
@@ -324,66 +422,54 @@ export function PaymentScheduleWorkspace() {
                   </div>
                 ) : null}
               </div>
-              {bookingId ? (
-                <div className="mt-2 flex flex-wrap items-center gap-2 rounded-xl border border-emerald-200/80 bg-emerald-50/60 px-3 py-2 text-sm text-emerald-950">
-                  <CalendarClock className="h-4 w-4 shrink-0 text-emerald-700" />
-                  <span className="min-w-0 flex-1 font-medium">
-                    {bookingDisplayLabel?.trim() ? (
-                      bookingDisplayLabel
-                    ) : (
-                      <span className="font-mono text-xs text-emerald-900/90">{bookingId}</span>
-                    )}
-                  </span>
-                  <button
-                    type="button"
-                    className="rounded-lg p-1 text-emerald-800 hover:bg-emerald-100"
-                    aria-label="Clear booking"
-                    onClick={clearBooking}
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </div>
-              ) : (
-                <p className="mt-1.5 text-xs text-slate-500">Search to link a booking, or paste its ID on the right.</p>
-              )}
+              <div className="mt-2 min-h-[4.5rem]">
+                {bookingId ? (
+                  <div className="flex flex-wrap items-center gap-2 rounded-xl border border-emerald-200/80 bg-emerald-50/60 px-3 py-2 text-sm text-emerald-950">
+                    <CalendarClock className="h-4 w-4 shrink-0 text-emerald-700" />
+                    <span className="min-w-0 flex-1 break-words font-medium leading-snug">
+                      {bookingDisplayLabel?.trim() || "Booking linked"}
+                    </span>
+                    <button
+                      type="button"
+                      className="rounded-lg p-1 text-emerald-800 hover:bg-emerald-100"
+                      aria-label="Clear booking"
+                      onClick={clearBooking}
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <p className="text-xs leading-snug text-slate-500">
+                    Search and pick a booking. Contract total is taken from the booking payable amount.
+                  </p>
+                )}
+              </div>
+              {formState.errors.bookingId?.message ? (
+                <p className="mt-1 text-xs font-medium text-rose-600" role="alert">
+                  {formState.errors.bookingId.message}
+                </p>
+              ) : null}
             </div>
 
-            <Field
-              id="bookingId"
-              label="Booking ID"
-              className="lg:col-span-4"
-              hint="Filled when you pick a result, or paste a CUID yourself."
-              error={formState.errors.bookingId?.message}
-              {...register("bookingId", {
-                onChange: () => {
-                  setValue("bookingDisplayLabel", "", { shouldDirty: true });
-                },
-              })}
-            />
-
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:col-span-3">
-              <SelectField
-                id="currency"
-                label="Currency"
-                value={currency}
-                onChange={(e) =>
-                  setValue("currency", e.target.value as "PKR" | "USD", { shouldValidate: true, shouldDirty: true })
-                }
-                options={[
-                  { value: "PKR", label: "PKR" },
-                  { value: "USD", label: "USD" },
-                ]}
-              />
-              <Field
-                id="totalAmount"
-                label="Contract total"
-                type="number"
-                inputMode="decimal"
-                step="0.01"
-                min={0}
-                error={formState.errors.totalAmount?.message}
-                {...register("totalAmount")}
-              />
+            <div className="min-w-0 lg:col-span-7">
+              <label htmlFor="contract-total-readonly" className="mb-1.5 block text-sm font-semibold text-slate-700">
+                Contract total (PKR)
+              </label>
+              <div
+                id="contract-total-readonly"
+                className="rounded-xl border border-slate-300/90 bg-slate-50 px-3 py-2.5 text-sm font-semibold tabular-nums text-slate-900 shadow-inner"
+              >
+                {bookingId ? formatPkContractNumber(Number(totalAmount) || 0) : "—"}
+              </div>
+              <p className="mt-1.5 min-h-[2.625rem] text-xs leading-snug text-slate-500">
+                From booking payable (or gross if payable is empty). All amounts are PKR.
+              </p>
+              {formState.errors.totalAmount?.message ? (
+                <p className="text-xs font-medium text-rose-600" role="alert">
+                  {formState.errors.totalAmount.message}
+                </p>
+              ) : null}
+              <input type="hidden" {...register("totalAmount", { valueAsNumber: true })} />
             </div>
           </div>
 
@@ -463,11 +549,35 @@ export function PaymentScheduleWorkspace() {
                   <div className="grid grid-cols-2 gap-3">
                     <Field id={`m-${index}-no`} label="#" type="number" error={rowErrors?.installmentNo?.message} {...register(`rows.${index}.installmentNo`)} />
                     <Field id={`m-${index}-due`} label="Due" type="date" error={rowErrors?.dueDate?.message} {...register(`rows.${index}.dueDate`)} />
-                    <Field id={`m-${index}-amt`} label="Due amt" type="number" step="0.01" error={rowErrors?.amount?.message} {...register(`rows.${index}.amount`)} />
-                    <Field id={`m-${index}-paid`} label="Paid" type="number" step="0.01" min={0} error={rowErrors?.paidAmount?.message} {...register(`rows.${index}.paidAmount`)} />
+                    <div className="space-y-1.5">
+                      <label htmlFor={`m-${index}-amt`} className="text-sm font-semibold text-slate-700">
+                        Due amt
+                      </label>
+                      <ScheduleAmountCell
+                        name={`rows.${index}.amount`}
+                        control={control}
+                        error={!!rowErrors?.amount}
+                      />
+                      {rowErrors?.amount?.message ? (
+                        <p className="text-xs text-rose-600">{rowErrors.amount.message}</p>
+                      ) : null}
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor={`m-${index}-paid`} className="text-sm font-semibold text-slate-700">
+                        Paid
+                      </label>
+                      <ScheduleAmountCell
+                        name={`rows.${index}.paidAmount`}
+                        control={control}
+                        error={!!rowErrors?.paidAmount}
+                      />
+                      {rowErrors?.paidAmount?.message ? (
+                        <p className="text-xs text-rose-600">{rowErrors.paidAmount.message}</p>
+                      ) : null}
+                    </div>
                   </div>
                   <p className="mt-2 text-xs text-slate-600">
-                    Balance on row: <span className="font-semibold text-slate-900">{formatMoney(amt - paid, currency)}</span>
+                    Balance on row: <span className="font-semibold text-slate-900">{formatMoney(amt - paid, CURRENCY)}</span>
                   </p>
                   <Field id={`m-${index}-label`} label="Label (optional)" className="mt-3" {...register(`rows.${index}.label`)} />
                 </div>
@@ -539,24 +649,23 @@ export function PaymentScheduleWorkspace() {
                           />
                         </td>
                         <td className="px-2 py-1.5 align-top">
-                          <input
-                            type="number"
-                            step="0.01"
-                            className={cn(cellInputClass, "min-w-[6.5rem]", rowErrors?.amount && "border-rose-400")}
-                            {...register(`rows.${index}.amount`)}
+                          <ScheduleAmountCell
+                            name={`rows.${index}.amount`}
+                            control={control}
+                            error={!!rowErrors?.amount}
+                            className="min-w-[6.5rem]"
                           />
                         </td>
                         <td className="px-2 py-1.5 align-top">
-                          <input
-                            type="number"
-                            step="0.01"
-                            min={0}
-                            className={cn(cellInputClass, "min-w-[6.5rem]", rowErrors?.paidAmount && "border-rose-400")}
-                            {...register(`rows.${index}.paidAmount`)}
+                          <ScheduleAmountCell
+                            name={`rows.${index}.paidAmount`}
+                            control={control}
+                            error={!!rowErrors?.paidAmount}
+                            className="min-w-[6.5rem]"
                           />
                         </td>
                         <td className="px-2 py-2 align-middle text-xs font-medium tabular-nums text-slate-700">
-                          {formatMoney(amt - paid, currency)}
+                          {formatMoney(amt - paid, CURRENCY)}
                         </td>
                         <td className="px-2 py-1.5 align-top">
                           <input type="text" className={cellInputClass} {...register(`rows.${index}.label`)} />
@@ -598,8 +707,8 @@ export function PaymentScheduleWorkspace() {
           <div className="flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50/80 px-3 py-2 text-sm text-amber-950">
             <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
             <span>
-              Row amounts total <strong>{formatMoney(scheduleStats.totalDue, currency)}</strong> but contract is{" "}
-              <strong>{formatMoney(scheduleStats.contract, currency)}</strong>. Align them before export if that matters
+              Row amounts total <strong>{formatMoney(scheduleStats.totalDue, CURRENCY)}</strong> but contract is{" "}
+              <strong>{formatMoney(scheduleStats.contract, CURRENCY)}</strong>. Align them before export if that matters
               for your process.
             </span>
           </div>
