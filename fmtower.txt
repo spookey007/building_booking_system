@@ -16,6 +16,10 @@ transfer will do everything like installment to another customer,
 but will maintain records, of old and new,
 
 
+
+
+
+
 cancellation, liability on FM towers,
 
 
@@ -40,6 +44,5 @@ ledger will be for the receiving against booking,
 
 total allowed months:
 60 months,
-
 
 
