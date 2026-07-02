@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle, CalendarClock, Download, LayoutList, Plus, Save, Search, Trash2, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { paymentScheduleDemoSchema, type PaymentScheduleDemoInput } from "@/lib/validations/payment-schedule-demo";
+import { savePaymentPlanAction } from "@/lib/actions/payment-plan-actions";
 import { downloadPaymentSchedulePdf } from "@/lib/payment-schedule-pdf";
-import { savePaymentScheduleDemo } from "@/lib/payment-schedule-demo-storage";
 import { showError, showSuccess } from "@/lib/toast-helper";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -152,6 +152,7 @@ function ScheduleAmountCell({
 export function PaymentScheduleWorkspace() {
   const router = useRouter();
   const [isPdfPending, startPdf] = useTransition();
+  const [isSaving, startSave] = useTransition();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchHits, setSearchHits] = useState<BookingHit[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -305,8 +306,15 @@ export function PaymentScheduleWorkspace() {
   };
 
   const onSaveSnapshot = handleSubmit((values) => {
-    savePaymentScheduleDemo(values);
-    showSuccess("Saved for Reports → Payment schedule (demo).");
+    startSave(async () => {
+      const result = await savePaymentPlanAction(values);
+      if (result.ok) {
+        showSuccess(result.message);
+        router.refresh();
+      } else {
+        showError(result.message);
+      }
+    });
   }, onInvalidSubmit);
 
   const onExportPdf = handleSubmit((values) => {
@@ -719,9 +727,9 @@ export function PaymentScheduleWorkspace() {
             <Download className="mr-2 h-4 w-4" />
             {isPdfPending ? "PDF…" : "Download PDF"}
           </Button>
-          <Button type="button" variant="secondary" onClick={onSaveSnapshot}>
+          <Button type="button" variant="secondary" onClick={onSaveSnapshot} disabled={isSaving}>
             <Save className="mr-2 h-4 w-4" />
-            Save for reports
+            {isSaving ? "Saving…" : "Save schedule"}
           </Button>
         </div>
       </Card>

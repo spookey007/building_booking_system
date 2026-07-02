@@ -51,7 +51,7 @@ export default async function BookingsPage({
   const uiStartDate = startInvalid ? defaults.startDate : startDateParam;
   const uiEndDate = endInvalid ? defaults.endDate : endDateParam;
 
-  const [bookings, projects] = await Promise.all([
+  const [bookings, projects, mergeCandidates] = await Promise.all([
     db.booking.findMany({
       orderBy: { bookingDate: "desc" },
       where: {
@@ -71,6 +71,18 @@ export default async function BookingsPage({
       select: { code: true, name: true },
       orderBy: { name: "asc" },
     }),
+    db.booking.findMany({
+      where: { status: { notIn: ["CANCELLED", "TRANSFERRED", "SWITCHED", "MERGED"] } },
+      select: {
+        id: true,
+        bookingNo: true,
+        customerId: true,
+        status: true,
+        customer: { select: { fullName: true } },
+        unit: { include: { tower: { select: { code: true } } } },
+      },
+      orderBy: { bookingDate: "desc" },
+    }),
   ]);
 
   return (
@@ -78,6 +90,14 @@ export default async function BookingsPage({
       startDate={uiStartDate}
       endDate={uiEndDate}
       projects={projects}
+      mergeCandidates={mergeCandidates.map((b) => ({
+        id: b.id,
+        bookingNo: b.bookingNo,
+        customerId: b.customerId,
+        customerName: b.customer.fullName,
+        unitLabel: formatUnitLabel(b.unit.tower.code, b.unit.unitNo, null),
+        status: b.status,
+      }))}
       rows={bookings.map((booking) => ({
         id: booking.id,
         unitId: booking.unitId,

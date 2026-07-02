@@ -30,7 +30,10 @@ export const paymentScheduleDemoSchema = z
       .transform((value) => (value == null ? "" : value.trim())),
     totalAmount: z.coerce.number().finite().min(0, "Contract total is missing for this booking."),
     currency: z.literal("PKR"),
-    rows: z.array(paymentScheduleInstallmentRowSchema).min(1, "Add at least one installment row."),
+    rows: z
+      .array(paymentScheduleInstallmentRowSchema)
+      .min(1, "Add at least one installment row.")
+      .max(60, "Maximum 60 installments allowed."),
   })
   .superRefine((data, ctx) => {
     if (data.rows.length > 0 && data.totalAmount <= 0) {

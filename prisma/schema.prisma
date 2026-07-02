@@ -32,6 +32,7 @@ enum BookingStatus {
   COMPLETED
   TRANSFERRED
   SWITCHED
+  MERGED
 }
 
 enum BookingMode {
@@ -40,6 +41,19 @@ enum BookingMode {
   CANCEL
   SWITCHING
   GIFT
+  MERGE
+}
+
+enum LedgerType {
+  OFFICIAL
+  UNOFFICIAL
+  UTILITY
+  PARKING
+}
+
+enum LiabilityType {
+  TRANSFER
+  CANCELLATION
 }
 
 enum InstallmentStatus {
@@ -62,6 +76,7 @@ enum DocumentOwnerType {
   BOOKING
   UNIT
   PAYMENT
+  RECEIVING
   USER
 }
 
@@ -254,6 +269,7 @@ model Customer {
   createdAt     DateTime   @default(now())
   bookings      Booking[]
   nominees      Nominee[]
+  receivings    Receiving[]
 
   @@index([fullName], map: "idx_customer_name")
   @@index([phone], map: "idx_customer_phone")
@@ -281,6 +297,7 @@ model Booking {
   projectId            String
   unitId               String
   previousBookingId    String?
+  mergedIntoBookingId  String?
   customerId           String
   bookedByUserId       String
   bookingDate          DateTime
@@ -311,11 +328,16 @@ model Booking {
   customer             Customer      @relation(fields: [customerId], references: [id], onDelete: Restrict)
   previousBooking      Booking?      @relation("BookingHistory", fields: [previousBookingId], references: [id], onDelete: SetNull)
   nextBookings         Booking[]     @relation("BookingHistory")
+  mergedIntoBooking    Booking?      @relation("BookingMergeTarget", fields: [mergedIntoBookingId], references: [id], onDelete: SetNull)
+  mergedFromBookings   Booking[]     @relation("BookingMergeTarget")
+  mergeAsSource        BookingMerge? @relation("MergeSourceBooking")
+  mergeAsTarget        BookingMerge[] @relation("MergeTargetBooking")
   project              Project       @relation(fields: [projectId], references: [id], onDelete: Restrict)
   switchToUnit         Unit?         @relation("SwitchToUnit", fields: [switchToUnitId], references: [id], onDelete: SetNull)
   unit                 Unit          @relation(fields: [unitId], references: [id], onDelete: Restrict)
   plan                 PaymentPlan?
   payments             Payment[]     @relation("BookingPayments")
+  receivingAllocations ReceivingAllocation[]
   sourcedPayments      Payment[]     @relation("PaymentSourceBooking")
   sourceLiabilities    CompanyLiability[] @relation("LiabilitySourceBooking")
   transferLiabilities  CompanyLiability[] @relation("LiabilityTransferBooking")
@@ -347,38 +369,104 @@ model PaymentInstallment {
   status        InstallmentStatus @default(PENDING)
   paymentPlan   PaymentPlan       @relation(fields: [paymentPlanId], references: [id], onDelete: Cascade)
   payments      Payment[]
+  allocations   ReceivingAllocation[]
 
   @@unique([paymentPlanId, installmentNo])
   @@index([status, dueDate], map: "idx_installment_status_due")
 }
 
 model Payment {
-  id            String              @id @default(cuid())
-  bookingId     String
+  id              String              @id @default(cuid())
+  bookingId       String
   sourceBookingId String?
-  installmentId String?
-  paymentDate   DateTime
-  amount        Decimal             @db.Decimal(14, 2)
-  mode          PaymentMode
-  referenceNo   String?             @db.VarChar(120)
-  receivedBy    String?             @db.VarChar(200)
-  notes         String?             @db.VarChar(1000)
-  voidedAt      DateTime?
-  voidReason    String?             @db.VarChar(500)
-  booking       Booking             @relation("BookingPayments", fields: [bookingId], references: [id], onDelete: Cascade)
-  sourceBooking Booking?            @relation("PaymentSourceBooking", fields: [sourceBookingId], references: [id], onDelete: SetNull)
-  installment   PaymentInstallment? @relation(fields: [installmentId], references: [id], onDelete: SetNull)
+  receivingId     String?
+  installmentId   String?
+  ledgerType      LedgerType          @default(OFFICIAL)
+  paymentDate     DateTime
+  amount          Decimal             @db.Decimal(14, 2)
+  mode            PaymentMode
+  referenceNo     String?             @db.VarChar(120)
+  receivedBy      String?             @db.VarChar(200)
+  notes           String?             @db.VarChar(1000)
+  voidedAt        DateTime?
+  voidReason      String?             @db.VarChar(500)
+  booking         Booking             @relation("BookingPayments", fields: [bookingId], references: [id], onDelete: Cascade)
+  sourceBooking   Booking?            @relation("PaymentSourceBooking", fields: [sourceBookingId], references: [id], onDelete: SetNull)
+  receiving       Receiving?          @relation(fields: [receivingId], references: [id], onDelete: SetNull)
+  installment     PaymentInstallment? @relation(fields: [installmentId], references: [id], onDelete: SetNull)
 
   @@index([bookingId, paymentDate], map: "idx_payment_booking_date")
   @@index([mode, paymentDate], map: "idx_payment_mode_date")
   @@index([sourceBookingId], map: "idx_payment_source_booking")
+  @@index([receivingId], map: "idx_payment_receiving")
+  @@index([ledgerType, paymentDate], map: "idx_payment_ledger_date")
   @@index([voidedAt], map: "idx_payment_voided")
+}
+
+model Receiving {
+  id                 String                @id @default(cuid())
+  receivingNo        String                @unique @db.VarChar(64)
+  customerId         String
+  receivedDate       DateTime
+  totalAmount        Decimal               @db.Decimal(14, 2)
+  mode               PaymentMode
+  receivedBy         String?               @db.VarChar(200)
+  chequeNo           String?               @db.VarChar(64)
+  chequeBank         String?               @db.VarChar(120)
+  chequeBranch       String?               @db.VarChar(120)
+  chequeDrawer       String?               @db.VarChar(200)
+  chequeDate         DateTime?
+  chequeStatus       String?               @db.VarChar(32)
+  onlineReceivedFrom String?               @db.VarChar(200)
+  onlineReference    String?               @db.VarChar(120)
+  notes              String?               @db.VarChar(1000)
+  voidedAt           DateTime?
+  voidReason         String?               @db.VarChar(500)
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  customer           Customer              @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  allocations        ReceivingAllocation[]
+  payments           Payment[]
+
+  @@index([customerId, receivedDate], map: "idx_receiving_customer_date")
+  @@index([mode, receivedDate], map: "idx_receiving_mode_date")
+  @@index([voidedAt], map: "idx_receiving_voided")
+}
+
+model ReceivingAllocation {
+  id            String              @id @default(cuid())
+  receivingId   String
+  bookingId     String
+  installmentId String?
+  amount        Decimal             @db.Decimal(14, 2)
+  ledgerType    LedgerType          @default(OFFICIAL)
+  receiving     Receiving           @relation(fields: [receivingId], references: [id], onDelete: Cascade)
+  booking       Booking             @relation(fields: [bookingId], references: [id], onDelete: Restrict)
+  installment   PaymentInstallment? @relation(fields: [installmentId], references: [id], onDelete: SetNull)
+
+  @@index([receivingId], map: "idx_allocation_receiving")
+  @@index([bookingId], map: "idx_allocation_booking")
+  @@index([ledgerType], map: "idx_allocation_ledger")
+}
+
+model BookingMerge {
+  id              String   @id @default(cuid())
+  targetBookingId String
+  sourceBookingId String   @unique
+  mergedAt        DateTime
+  mergedByUserId  String
+  notes           String?  @db.VarChar(1000)
+  targetBooking   Booking  @relation("MergeTargetBooking", fields: [targetBookingId], references: [id], onDelete: Cascade)
+  sourceBooking   Booking  @relation("MergeSourceBooking", fields: [sourceBookingId], references: [id], onDelete: Cascade)
+
+  @@index([targetBookingId], map: "idx_merge_target")
 }
 
 model CompanyLiability {
   id                String          @id @default(cuid())
   sourceBookingId   String
   transferBookingId String?
+  liabilityType     LiabilityType   @default(TRANSFER)
   amount            Decimal         @db.Decimal(14, 2)
   reason            String          @db.VarChar(400)
   status            LiabilityStatus @default(OPEN)
@@ -393,6 +481,7 @@ model CompanyLiability {
   @@index([status, dueDate], map: "idx_liability_status_due")
   @@index([sourceBookingId], map: "idx_liability_source_booking")
   @@index([transferBookingId], map: "idx_liability_transfer_booking")
+  @@index([liabilityType, status], map: "idx_liability_type_status")
 }
 
 model Document {

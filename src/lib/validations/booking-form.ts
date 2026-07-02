@@ -12,7 +12,7 @@ import {
   requiredText,
 } from "@/lib/validations/common";
 
-export const bookingModeEnum = z.enum(["REGULAR", "TRANSFER", "CANCEL", "SWITCHING", "GIFT"]);
+export const bookingModeEnum = z.enum(["REGULAR", "TRANSFER", "CANCEL", "SWITCHING", "GIFT", "MERGE"]);
 
 export const bookingFormSchema = z
   .object({

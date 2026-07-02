@@ -23,6 +23,10 @@ export type SalesBookingsSummary = {
   paidInstallments: number;
   soldStockValueLabel: string;
   bookedStockValueLabel: string;
+  totalPayableLabel: string;
+  totalCollectedLabel: string;
+  totalOutstandingLabel: string;
+  portfolioRecoveryPct: number;
 };
 
 export type SalesBookingsRow = {
@@ -39,7 +43,15 @@ export type SalesBookingsRow = {
   totalInstallments: number;
   paidInstallments: number;
   pendingInstallments: number;
+  payable: number;
+  collected: number;
+  remaining: number;
+  recoveryPct: number;
 };
+
+function formatPkr(n: number) {
+  return new Intl.NumberFormat("en-PK", { style: "currency", currency: "PKR", maximumFractionDigits: 0 }).format(n);
+}
 
 function downloadCsv(filename: string, csv: string) {
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -67,6 +79,10 @@ function buildCsv(rows: SalesBookingsRow[]) {
     "installments_paid",
     "installments_total",
     "installments_pending",
+    "payable_pkr",
+    "collected_pkr",
+    "remaining_pkr",
+    "recovery_pct",
   ];
   const lines = rows.map((r) =>
     [
@@ -82,6 +98,10 @@ function buildCsv(rows: SalesBookingsRow[]) {
       r.paidInstallments,
       r.totalInstallments,
       r.pendingInstallments,
+      r.payable,
+      r.collected,
+      r.remaining,
+      r.recoveryPct,
     ]
       .map((v) => `"${String(v).replace(/"/g, '""')}"`)
       .join(","),
@@ -155,6 +175,30 @@ export function SalesBookingsWorkspace({
           );
         },
       },
+      {
+        accessorKey: "payable",
+        header: () => <span className="block text-right">Payable</span>,
+        cell: ({ getValue }) => <span className="block text-right tabular-nums">{formatPkr(getValue() as number)}</span>,
+      },
+      {
+        accessorKey: "collected",
+        header: () => <span className="block text-right">Collected</span>,
+        cell: ({ getValue }) => (
+          <span className="block text-right tabular-nums text-emerald-800">{formatPkr(getValue() as number)}</span>
+        ),
+      },
+      {
+        accessorKey: "remaining",
+        header: () => <span className="block text-right">Remaining</span>,
+        cell: ({ getValue }) => (
+          <span className="block text-right tabular-nums font-medium text-rose-700">{formatPkr(getValue() as number)}</span>
+        ),
+      },
+      {
+        accessorKey: "recoveryPct",
+        header: () => <span className="block text-right">Recovery</span>,
+        cell: ({ getValue }) => <span className="block text-right tabular-nums">{getValue() as number}%</span>,
+      },
     ],
     [],
   );
@@ -167,21 +211,17 @@ export function SalesBookingsWorkspace({
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: { pageSize: 12 },
-      sorting: [{ id: "bookingDate", desc: true }],
+      sorting: [{ id: "remaining", desc: true }],
     },
   });
-
-  const installmentProgress =
-    summary.totalInstallments > 0
-      ? Math.round((summary.paidInstallments / summary.totalInstallments) * 100)
-      : 0;
 
   return (
     <div className="space-y-4">
       <motion.header initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
-        <h2 className="text-2xl font-bold text-slate-900">Sales &amp; installments</h2>
-        <p className="text-sm text-slate-500">
-          Sold and booked stock, installment completion, and active bookings on committed units.
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-600">FM Towers · Sales</p>
+        <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">Sales &amp; recovery report</h2>
+        <p className="text-sm text-slate-600">
+          Outstanding balances use <strong>payable − receipts</strong> (works for imported sold data). Installment columns appear when a payment plan exists.
         </p>
       </motion.header>
 
@@ -189,8 +229,10 @@ export function SalesBookingsWorkspace({
         {[
           { label: "Units sold", value: summary.soldUnits, sub: summary.soldStockValueLabel },
           { label: "Units booked", value: summary.bookedUnits, sub: summary.bookedStockValueLabel },
-          { label: "Installments paid", value: summary.paidInstallments, sub: `of ${summary.totalInstallments} total` },
-          { label: "Installment progress", value: `${installmentProgress}%`, sub: "paid vs scheduled" },
+          { label: "Contract value", value: summary.totalPayableLabel, sub: "Active bookings" },
+          { label: "Collected", value: summary.totalCollectedLabel, sub: "All receipts" },
+          { label: "Outstanding", value: summary.totalOutstandingLabel, sub: "Still to recover" },
+          { label: "Recovery", value: `${summary.portfolioRecoveryPct}%`, sub: "Portfolio-wide" },
         ].map((card, i) => (
           <motion.div
             key={card.label}

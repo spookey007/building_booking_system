@@ -13,10 +13,15 @@
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:migrate:deploy": "node scripts/prisma-migrate-deploy.mjs",
+    "prisma:migrate:deploy:tcp": "prisma migrate deploy",
     "prisma:push": "prisma db push",
     "prisma:seed": "node prisma/seed.mjs",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+    "db:ping": "node scripts/db-ping.mjs",
+    "parse:client-pdfs": "node scripts/parse-client-pdfs.mjs",
+    "import:client-data": "node scripts/import-fm-client-data.mjs",
+    "sync:client-data": "node scripts/sync-fm-data.mjs",
+    "vercel-build": "prisma generate && node scripts/prisma-migrate-deploy.mjs && next build"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.4",
@@ -24,6 +29,7 @@
     "@types/pg": "^8.20.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/ws": "^8.18.1",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.5",
     "tailwindcss": "^4.2.4",
@@ -31,6 +37,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@neondatabase/serverless": "^1.1.0",
+    "@prisma/adapter-neon": "^7.8.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@tanstack/react-table": "^8.21.3",
@@ -50,6 +58,7 @@
     "react-hook-form": "^7.75.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.5.0",
+    "ws": "^8.21.0",
     "zod": "^4.4.3"
   },
   "prisma": {

@@ -1,4 +1,10 @@
 import { Building2, CircleDollarSign, FileText, Sparkles, TrendingUp, Users } from "lucide-react";
+import {
+  ACTIVE_BOOKING_STATUSES,
+  computeBookingFinancials,
+  portfolioRecoveryPct,
+  sumBookingFinancials,
+} from "@/lib/booking-financials";
 import { db } from "@/lib/db";
 import { Card } from "@/components/ui/card";
 
@@ -6,6 +12,17 @@ export const dynamic = "force-dynamic";
 
 type StatusBucket = { key: string; label: string; count: number; tone: string; color: string };
 type TrendPoint = { label: string; count: number };
+type RecoveryPoint = { label: string; recoveryPct: number; collected: number };
+type BookingRecoveryRow = {
+  id: string;
+  bookingNo: string;
+  customerName: string;
+  unitLabel: string;
+  payable: number;
+  paid: number;
+  remaining: number;
+  recoveryPct: number;
+};
 type TopCustomer = { id: string; name: string; bookings: number; amount: number };
 
 function formatMonthLabel(year: number, monthIndex: number) {
@@ -111,6 +128,8 @@ async function getDashboardData() {
     bookingDates,
     customerDates,
     topCustomerRaw,
+    recoveryBookingsRaw,
+    recoveryPaymentsRaw,
   ] = await Promise.all([
     db.unit.count(),
     db.booking.count(),
@@ -137,6 +156,20 @@ async function getDashboardData() {
       orderBy: { createdAt: "asc" },
     }),
     db.booking.groupBy({ by: ["customerId"], _count: { _all: true }, _sum: { grossTotal: true } }),
+    db.booking.findMany({
+      where: { status: { in: [...ACTIVE_BOOKING_STATUSES] } },
+      orderBy: { bookingDate: "desc" },
+      include: {
+        customer: { select: { fullName: true } },
+        unit: { include: { tower: { select: { code: true } } } },
+        payments: { where: { voidedAt: null }, select: { amount: true } },
+      },
+    }),
+    db.payment.findMany({
+      where: { voidedAt: null, paymentDate: { gte: periodStart } },
+      select: { paymentDate: true, amount: true },
+      orderBy: { paymentDate: "asc" },
+    }),
   ]);
 
   const unitStatusMap = new Map(unitStatusRaw.map((entry) => [entry.listingStatus, entry._count._all]));
@@ -184,6 +217,44 @@ async function getDashboardData() {
     label: entry.label,
     count: bookingTrendMap.get(entry.key) ?? 0,
   }));
+
+  const allRecoveryRows: BookingRecoveryRow[] = recoveryBookingsRaw.map((booking) => {
+    const fin = computeBookingFinancials(booking);
+    return {
+      id: booking.id,
+      bookingNo: booking.bookingNo,
+      customerName: booking.customer.fullName,
+      unitLabel: `${booking.unit.tower.code} · ${booking.unit.unitNo}`,
+      payable: fin.payable,
+      paid: fin.paid,
+      remaining: fin.remaining,
+      recoveryPct: fin.recoveryPct,
+    };
+  });
+
+  const portfolioTotals = sumBookingFinancials(allRecoveryRows);
+  const portfolioRecovery = portfolioRecoveryPct(portfolioTotals);
+
+  const recoveryByBooking = [...allRecoveryRows]
+    .filter((row) => row.payable > 0 || row.paid > 0)
+    .sort((a, b) => b.remaining - a.remaining || a.recoveryPct - b.recoveryPct)
+    .slice(0, 20);
+
+  const recoveryTrendMap = new Map<string, { collected: number }>();
+  for (const payment of recoveryPaymentsRaw) {
+    const key = `${payment.paymentDate.getFullYear()}-${payment.paymentDate.getMonth()}`;
+    const bucket = recoveryTrendMap.get(key) ?? { collected: 0 };
+    bucket.collected += Number(payment.amount);
+    recoveryTrendMap.set(key, bucket);
+  }
+  const recoveryTrend: RecoveryPoint[] = trendMonthKeys.map((entry) => {
+    const collected = recoveryTrendMap.get(entry.key)?.collected ?? 0;
+    const recoveryPct =
+      portfolioTotals.payable > 0
+        ? Math.min(100, Math.round((collected / portfolioTotals.payable) * 100))
+        : 0;
+    return { label: entry.label, recoveryPct, collected };
+  });
 
   const customerMonthKeys: { key: string; label: string }[] = [];
   for (let i = 5; i >= 0; i -= 1) {
@@ -236,6 +307,10 @@ async function getDashboardData() {
     bookingStatus,
     paymentModes,
     bookingTrend,
+    recoveryTrend,
+    recoveryByBooking,
+    portfolioTotals,
+    portfolioRecovery,
     customerTrend,
     topCustomers,
   };
@@ -250,7 +325,6 @@ const statConfig = [
 
 export default async function DashboardHomePage() {
   const stats = await getDashboardData();
-  const trendChart = buildTrendGeometry(stats.bookingTrend);
   const unitDonut = buildDonutSegments(stats.unitStatus);
   const bookingStatusMax = Math.max(...stats.bookingStatus.map((entry) => entry.count), 1);
   const paymentModeMax = Math.max(...stats.paymentModes.map((entry) => entry.count), 1);
@@ -295,74 +369,100 @@ export default async function DashboardHomePage() {
         })}
       </div>
 
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {[
+          { label: "Contract value", value: toMoney(stats.portfolioTotals.payable), hint: "Active bookings payable" },
+          { label: "Collected", value: toMoney(stats.portfolioTotals.paid), hint: "Non-voided receipts" },
+          { label: "Outstanding", value: toMoney(stats.portfolioTotals.remaining), hint: "Remaining from customers" },
+          { label: "Portfolio recovery", value: `${stats.portfolioRecovery}%`, hint: "Paid ÷ payable (active bookings)" },
+        ].map((card) => (
+          <Card key={card.label} animate={false} className="rounded-2xl border border-slate-200/90 p-4 shadow-sm">
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-500">{card.label}</p>
+            <p className="mt-2 text-2xl font-bold tabular-nums text-slate-900">{card.value}</p>
+            <p className="mt-1 text-xs text-slate-600">{card.hint}</p>
+          </Card>
+        ))}
+      </div>
+
       <div className="grid gap-3 xl:grid-cols-12">
         <Card animate={false} className="space-y-3 p-4 xl:col-span-8">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Booking Trend</h3>
-              <p className="text-base font-bold text-slate-900">Bookings trend (last 8 months)</p>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Recovery trend</h3>
+              <p className="text-base font-bold text-slate-900">Collections vs portfolio (last 8 months)</p>
+              <p className="text-xs text-slate-500">
+                Recovery % = monthly collections ÷ total active booking payable. Outstanding = payable − receipts (no plan required).
+              </p>
             </div>
-            <TrendingUp className="h-5 w-5 text-indigo-600" />
+            <TrendingUp className="h-5 w-5 text-emerald-600" />
           </div>
-          <div className="overflow-hidden rounded-xl border border-indigo-100 bg-gradient-to-br from-indigo-50/80 to-white p-3">
-            <svg viewBox={`0 0 ${trendChart.width} ${trendChart.height}`} className="h-52 w-full" role="img" aria-label="Bookings per month trend chart">
-              <defs>
-                <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#6366f1" stopOpacity="0.05" />
-                </linearGradient>
-              </defs>
-              {trendChart.yTicks.map((tick, i) => (
-                <g key={`grid-${i}`}>
-                  <line
-                    x1={trendChart.leftPad}
-                    y1={tick.y}
-                    x2={trendChart.width - trendChart.rightPad}
-                    y2={tick.y}
-                    stroke="#e2e8f0"
-                    strokeWidth="1"
-                  />
-                  <text
-                    x={trendChart.leftPad - 6}
-                    y={tick.y + 4}
-                    textAnchor="end"
-                    fill="#64748b"
-                    fontSize="10"
-                    fontWeight="600"
-                  >
-                    {tick.value}
-                  </text>
-                </g>
+          <div className="overflow-hidden rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50/80 to-white p-3">
+            <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
+              {stats.recoveryTrend.map((point) => (
+                <div key={point.label} className="text-center">
+                  <div className="mx-auto flex h-16 w-full max-w-[48px] items-end justify-center rounded-md bg-emerald-100/60">
+                    <div
+                      className="w-full rounded-t-md bg-emerald-500"
+                      style={{ height: `${Math.max(8, point.recoveryPct)}%` }}
+                      title={`${point.recoveryPct}%`}
+                    />
+                  </div>
+                  <p className="mt-1 text-[0.65rem] font-semibold text-slate-600">{point.label}</p>
+                  <p className="text-[0.65rem] text-slate-500">{toCompactMoney(point.collected)}</p>
+                </div>
               ))}
-              <path d={trendChart.areaPath} fill="url(#trendFill)" />
-              <path d={trendChart.linePath} fill="none" stroke="#4f46e5" strokeWidth="3" strokeLinecap="round" />
-              {trendChart.coords.map((point, idx) => (
-                <g key={`${point.label}-${idx}`}>
-                  <title>{`${point.count} booking${point.count === 1 ? "" : "s"} — ${point.label}`}</title>
-                  <circle cx={point.x} cy={point.y} r="6" fill="#4f46e5" stroke="#fff" strokeWidth="2" className="cursor-default" />
-                  <text
-                    x={point.x}
-                    y={point.y - 12}
-                    textAnchor="middle"
-                    fill={point.count > 0 ? "#312e81" : "#94a3b8"}
-                    fontSize="11"
-                    fontWeight="700"
-                  >
-                    {point.count}
-                  </text>
-                  <text
-                    x={point.x}
-                    y={trendChart.height - 6}
-                    textAnchor="middle"
-                    fill="#64748b"
-                    fontSize="11"
-                    fontWeight="600"
-                  >
-                    {point.label}
-                  </text>
-                </g>
-              ))}
-            </svg>
+            </div>
+          </div>
+          <div className="pt-2">
+            <h4 className="text-sm font-semibold text-slate-800">Highest outstanding (top 20)</h4>
+            <div className="mt-2 overflow-x-auto rounded-xl border border-slate-200">
+              <table className="min-w-full text-sm">
+                <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+                  <tr>
+                    <th className="px-3 py-2">Booking</th>
+                    <th className="px-3 py-2">Customer</th>
+                    <th className="px-3 py-2">Unit</th>
+                    <th className="px-3 py-2 text-right">Paid</th>
+                    <th className="px-3 py-2 text-right">Payable</th>
+                    <th className="px-3 py-2 text-right">Remaining</th>
+                    <th className="px-3 py-2 text-right">Recovery</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.recoveryByBooking.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="px-3 py-6 text-center text-slate-500">
+                        No active bookings with payable amounts yet.
+                      </td>
+                    </tr>
+                  ) : (
+                    stats.recoveryByBooking.map((row) => (
+                      <tr key={row.id} className="border-t border-slate-100">
+                        <td className="px-3 py-2 font-medium text-slate-900">{row.bookingNo}</td>
+                        <td className="px-3 py-2 text-slate-600">{row.customerName}</td>
+                        <td className="px-3 py-2 text-slate-600">{row.unitLabel}</td>
+                        <td className="px-3 py-2 text-right tabular-nums">{toMoney(row.paid)}</td>
+                        <td className="px-3 py-2 text-right tabular-nums">{toMoney(row.payable)}</td>
+                        <td className="px-3 py-2 text-right tabular-nums font-medium text-rose-700">{toMoney(row.remaining)}</td>
+                        <td className="px-3 py-2 text-right">
+                          <span
+                            className={`inline-flex rounded-full px-2 py-0.5 text-xs font-semibold ${
+                              row.recoveryPct >= 80
+                                ? "bg-emerald-100 text-emerald-800"
+                                : row.recoveryPct >= 40
+                                  ? "bg-amber-100 text-amber-800"
+                                  : "bg-rose-100 text-rose-800"
+                            }`}
+                          >
+                            {row.recoveryPct}%
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </Card>
 

@@ -81,7 +81,7 @@ export default async function PaymentsPage() {
               >
                 <div>
                   <p className="font-semibold text-slate-900 dark:text-slate-100">
-                    Source: {liability.sourceBooking.bookingNo}
+                    [{liability.liabilityType}] Source: {liability.sourceBooking.bookingNo}
                     {liability.transferBooking ? ` -> Transfer: ${liability.transferBooking.bookingNo}` : ""}
                   </p>
                   <p className="text-xs text-slate-500 dark:text-slate-400">{liability.reason}</p>

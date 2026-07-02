@@ -1,15 +1,13 @@
 import "dotenv/config";
-import { PrismaClient } from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
+import {
+  createPrismaClient,
+  normalizeDatabaseUrl,
+  printDbTroubleshooting,
+  withDbRetry,
+} from "../scripts/lib/pg-connection.mjs";
 
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error("DATABASE_URL environment variable is missing");
-}
-
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({ adapter });
+const prisma = createPrismaClient(normalizeDatabaseUrl(process.env.DATABASE_URL));
 
 async function seedRolesAndPermissions() {
   const roleCodes = [
@@ -57,6 +55,8 @@ async function seedMenu() {
     { itemKey: "bookings", label: "Bookings", route: "/dashboard/bookings", icon: "FileText", sortOrder: 30 },
     { itemKey: "new-booking", label: "New Booking", route: "/dashboard/bookings/new", icon: "NotebookPen", sortOrder: 40 },
     { itemKey: "payments", label: "Payments", route: "/dashboard/payments", icon: "Wallet", sortOrder: 50 },
+    { itemKey: "receiving", label: "Receiving", route: "/dashboard/receiving", icon: "HandCoins", sortOrder: 55 },
+    { itemKey: "ledger", label: "Ledger", route: "/dashboard/ledger", icon: "BookOpen", sortOrder: 56 },
     { itemKey: "customers", label: "Customers", route: "/dashboard/customers", icon: "Users", sortOrder: 60 },
     { itemKey: "settings", label: "Settings", route: "/dashboard/settings", icon: "Settings", sortOrder: 70 },
   ];
@@ -155,6 +155,11 @@ async function seedProjectsAndTowers() {
     ["A", "Tower A"],
     ["B", "Tower B"],
     ["C", "Tower C"],
+    ["D", "Tower D"],
+    ["E", "Tower E"],
+    ["F", "Tower F"],
+    ["G", "Tower G"],
+    ["H", "Tower H"],
     ["Z", "Tower Z"],
   ];
 
@@ -575,7 +580,7 @@ async function seedDemoUnitsAndBookings() {
 }
 
 async function main() {
-  await seedRolesAndPermissions();
+  await withDbRetry(() => seedRolesAndPermissions(), { label: "seed" });
   await seedMenu();
   await seedLookups();
   await seedProjectsAndTowers();
@@ -586,7 +591,7 @@ async function main() {
 
 main()
   .catch((error) => {
-    console.error(error);
+    printDbTroubleshooting(error);
     process.exit(1);
   })
   .finally(async () => {

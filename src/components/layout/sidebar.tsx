@@ -7,10 +7,12 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   BarChart3,
+  BookOpen,
   Building2,
   CalendarClock,
   ChevronDown,
   FileText,
+  HandCoins,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -37,6 +39,8 @@ const iconMap = {
   Users,
   Settings,
   CalendarClock,
+  HandCoins,
+  BookOpen,
 };
 
 export function Sidebar({

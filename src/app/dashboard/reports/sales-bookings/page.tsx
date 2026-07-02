@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { ACTIVE_BOOKING_STATUSES, computeBookingFinancials, sumBookingFinancials } from "@/lib/booking-financials";
 import { formatUnitLabel } from "@/lib/unit-display";
 import { SalesBookingsWorkspace, type SalesBookingsRow, type SalesBookingsSummary } from "./sales-bookings-workspace";
 
@@ -27,7 +28,7 @@ export default async function SalesBookingsReportPage() {
       }),
       db.booking.findMany({
         where: {
-          status: { notIn: ["CANCELLED", "TRANSFERRED", "SWITCHED"] },
+          status: { in: [...ACTIVE_BOOKING_STATUSES] },
           unit: { listingStatus: { in: ["BOOKED", "SOLD"] } },
         },
         include: {
@@ -38,6 +39,7 @@ export default async function SalesBookingsReportPage() {
               tower: { select: { code: true } },
             },
           },
+          payments: { where: { voidedAt: null }, select: { amount: true } },
           plan: {
             include: {
               schedules: { select: { status: true } },
@@ -53,6 +55,7 @@ export default async function SalesBookingsReportPage() {
     const total = schedules.length;
     const paid = schedules.filter((s) => s.status === "PAID").length;
     const pending = schedules.filter((s) => s.status === "PENDING" || s.status === "PARTIAL" || s.status === "OVERDUE").length;
+    const fin = computeBookingFinancials(b);
     const u = b.unit;
     const label = formatUnitLabel(u.tower.code, u.unitNo, u.prefix);
     return {
@@ -69,8 +72,16 @@ export default async function SalesBookingsReportPage() {
       totalInstallments: total,
       paidInstallments: paid,
       pendingInstallments: pending,
+      payable: fin.payable,
+      collected: fin.paid,
+      remaining: fin.remaining,
+      recoveryPct: fin.recoveryPct,
     };
   });
+
+  const financialTotals = sumBookingFinancials(
+    rows.map((r) => ({ payable: r.payable, paid: r.collected, remaining: r.remaining, recoveryPct: r.recoveryPct })),
+  );
 
   const summary: SalesBookingsSummary = {
     soldUnits,
@@ -79,6 +90,10 @@ export default async function SalesBookingsReportPage() {
     paidInstallments,
     soldStockValueLabel: money(Number(soldValueAgg._sum.basePrice ?? 0)),
     bookedStockValueLabel: money(Number(bookedValueAgg._sum.basePrice ?? 0)),
+    totalPayableLabel: money(financialTotals.payable),
+    totalCollectedLabel: money(financialTotals.paid),
+    totalOutstandingLabel: money(financialTotals.remaining),
+    portfolioRecoveryPct: financialTotals.payable > 0 ? Math.round((financialTotals.paid / financialTotals.payable) * 100) : 0,
   };
 
   return <SalesBookingsWorkspace rows={rows} summary={summary} />;

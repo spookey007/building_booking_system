@@ -12,6 +12,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { showError, showSuccess } from "@/lib/toast-helper";
+import { drawFmReportPdfHeader } from "@/lib/reports/report-pdf-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
@@ -152,8 +153,9 @@ export function StockReportWorkspace({ rows }: { rows: StockReportRow[] }) {
   return (
     <div className="space-y-4">
       <motion.header initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
-        <h2 className="text-2xl font-bold text-slate-900">Stock Report</h2>
-        <p className="text-sm text-slate-500">Stock summary and detailed report for shops and flats.</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-600">FM Towers · Inventory</p>
+        <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">Stock report</h2>
+        <p className="text-sm text-slate-600">Unit inventory by tower — shops and flats, sold, booked, and available stock.</p>
       </motion.header>
 
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.22, delay: 0.03 }}>
@@ -224,17 +226,17 @@ export function StockReportWorkspace({ rows }: { rows: StockReportRow[] }) {
                   const autoTable = autoTableModule.default;
                   const doc = new jsPDF({
                     orientation: "landscape",
-                    unit: "pt",
+                    unit: "mm",
                     format: "a4",
                   });
 
-                  doc.setFontSize(14);
-                  doc.text("Stock Report", 40, 36);
-                  doc.setFontSize(10);
-                  doc.text(`Type: ${typeFilter} | Status: ${statusFilter} | Records: ${filteredRows.length}`, 40, 54);
+                  const startY = drawFmReportPdfHeader(doc, {
+                    title: "Stock / inventory report",
+                    subtitle: `Type: ${typeFilter} · Status: ${statusFilter} · Records: ${filteredRows.length}`,
+                  });
 
                   autoTable(doc, {
-                    startY: 66,
+                    startY,
                     head: [["Project", "Tower", "Unit", "Type", "Status", "Floor", "Area (sqft)", "Base Price", "Transfer"]],
                     body: filteredRows.map((row) => [
                       row.projectCode,

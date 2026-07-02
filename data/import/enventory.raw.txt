@@ -1,0 +1,2213 @@
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+1   A101        1256     1      GOLD       A   Neavy Merchant         4  Residential
+                1256     1      GOLD       B   Neavy Merchant         4  Residential
+2   B101        1745     1   PLATINUM      C                          5  Residential
+                878      1     SILVER      D       East Open          3  Residential
+3   C101        1256     1      GOLD       E       East Open          4  Residential
+                1256     1      GOLD       F   Highway Facing         4  Residential
+4   D101        878      1     SILVER      G   Highway Facing         3  Residential
+                1745     1   PLATINUM      H      Park Facing         5  Residential
+5   E101        1256     1      GOLD       A      West Open           4  Residential
+                1256     1      GOLD       B   Neavy Merchant         4  Residential
+6   F101        1745     1   PLATINUM      C   Neavy Merchant         5  Residential
+                878      1     SILVER      D       East Open          3  Residential
+7   G101        1256     1      GOLD       E       East Open          4  Residential
+                1256     1      GOLD       F   Highway Facing         4  Residential
+8   H101        878      1     SILVER      G   Highway Facing         3  Residential
+                1745     1   PLATINUM      H      Park Facing         5  Residential
+9   A102        1256     1      GOLD       A      West Open           4  Residential
+                1256     1      GOLD       B   Neavy Merchant         4  Residential
+10  B102        1745     1   PLATINUM      C   Neavy Merchant         5  Residential
+                878      1     SILVER      D       East Open          3  Residential
+11  C102        1256     1      GOLD       E       East Open          4  Residential
+                1256     1      GOLD       F   Highway Facing         4  Residential
+12  D102        878      1     SILVER      G   Highway Facing         3  Residential
+                1745     1   PLATINUM      H      Park Facing         5  Residential
+13  E102        1256     1      GOLD       A      West Open           4  Residential
+                1256     1      GOLD       B   Neavy Merchant         4  Residential
+14  F102        1745     1   PLATINUM      C   Neavy Merchant         5  Residential
+                                              Park Facing / West
+15  G102        878      1     SILVER      D                          3  Residential
+                1256     1      GOLD       E          Open            4  Residential
+16  H102        1256     1      GOLD       F      Park Facing         4  Residential
+                878      1     SILVER      G   Highway Facing         3  Residential
+17  A103        1745     1   PLATINUM      H   Highway Facing         5  Residential
+                1256     1      GOLD       A       East Open          4  Residential
+18  B103        1256     1      GOLD       B      Park Facing         4  Residential
+                1745     1   PLATINUM      C                          5  Residential
+19  C103                                              Park
+                878      1     SILVER      D      West Open           3  Residential
+20  D103        1256     1      GOLD       E  Park Facing / West      4  Residential
+                1256     1      GOLD       F                          4  Residential
+21  E103        878      1     SILVER      G          Open            3  Residential
+                1745     1   PLATINUM      H      Park Facing         5  Residential
+22  F103        1256     1      GOLD       A       East Open          4  Residential
+                1256     1      GOLD       B       East Open          4  Residential
+23  G103        1745     1   PLATINUM      C       East Open          5  Residential
+                                                  Park Facing
+24  H103        878      1     SILVER      D                          3  Residential
+                1256     1      GOLD       E          Park            4  Residential
+25  A104        1256     1      GOLD       F      West Open           4  Residential
+                878      1     SILVER      G  Park Facing / West      3  Residential
+26  B104        1745     1   PLATINUM      H                          5  Residential
+                1256     1      GOLD       A          Open            4  Residential
+27  C104        1256     1      GOLD       B      Park Facing         4  Residential
+                878      1     SILVER      D       East Open          3  Residential
+28  D104                                           East Open
+                                                   East Open
+29  E104                                          Park Facing
+                                                  West Open
+30  F104
+                                                      Park
+31  G104                                          West Open
+
+32  H104
+
+33  A105
+
+34  B105
+
+35  C105
+
+36  D105
+
+37  E105
+
+38  F105
+
+39  G105
+
+40  H105
+
+41  A106
+
+42  B106
+
+43  C106
+
+44  D106
+
+45  E106
+
+46  F106
+
+47  G106
+
+48  H106
+
+49  A107
+
+50  B107
+
+51  D107
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+52   E107       1256     1      GOLD       E       East Open          4  Residential
+                1256     1      GOLD       F       East Open          4  Residential
+53   F107       878      1     SILVER      G      West Open           3  Residential
+                1256     1      GOLD       A      West Open           4  Residential
+54   G107       1256     1      GOLD       B                          4  Residential
+                878      1     SILVER      D          Park            3  Residential
+55   A108       1256     1      GOLD       E      West Open           4  Residential
+                1256     1      GOLD       F       East Open          4  Residential
+56   B108       878      1     SILVER      G       East Open          3  Residential
+                878      1     SILVER      D      West Open           3  Residential
+57   D108       878      1     SILVER      G      West Open           3  Residential
+                878      1     SILVER      D      West Open           3  Residential
+58   E108       878      1     SILVER      G      West Open           3  Residential
+                878      1     SILVER      D      West Open           3  Residential
+59   F108       878      1     SILVER      G      West Open           3  Residential
+                878      1     SILVER      D      West Open           3  Residential
+60   G108       878      1     SILVER      G      West Open           3  Residential
+                1256     2      GOLD       A      West Open           4  Residential
+61   D109       1256     2      GOLD       B   Neavy Merchant         4  Residential
+                1745     2   PLATINUM      C   Neavy Merchant         5  Residential
+62   G109       878      2     SILVER      D       East Open          3  Residential
+                1256     2      GOLD       E       East Open          4  Residential
+63   D110       1256     2      GOLD       F   Highway Facing         4  Residential
+                878      2     SILVER      G   Highway Facing         3  Residential
+64   G110       1745     2   PLATINUM      H      Park Facing         5  Residential
+                1256     2      GOLD       A      West Open           4  Residential
+65   D111       1256     2      GOLD       B   Neavy Merchant         4  Residential
+                1745     2   PLATINUM      C   Neavy Merchant         5  Residential
+66   G111       878      2     SILVER      D       East Open          3  Residential
+                1256     2      GOLD       E       East Open          4  Residential
+67   D112       1256     2      GOLD       F   Highway Facing         4  Residential
+                878      2     SILVER      G   Highway Facing         3  Residential
+68   G112       1745     2   PLATINUM      H      Park Facing         5  Residential
+                1256     2      GOLD       A      West Open           4  Residential
+69   A201       1256     2      GOLD       B   Neavy Merchant         4  Residential
+                1745     2   PLATINUM      C   Neavy Merchant         5  Residential
+70   B201       878      2     SILVER      D       East Open          3  Residential
+                1256     2      GOLD       E       East Open          4  Residential
+71   C201       1256     2      GOLD       F   Highway Facing         4  Residential
+                878      2     SILVER      G   Highway Facing         3  Residential
+72   D201       1745     2   PLATINUM      H      Park Facing         5  Residential
+                1256     2      GOLD       A      West Open           4  Residential
+73   E201       1256     2      GOLD       B   Neavy Merchant         4  Residential
+                1745     2   PLATINUM      C   Neavy Merchant         5  Residential
+74   F201                                     Park Facing / West
+                878      2     SILVER      D                          3  Residential
+75   G201       1256     2      GOLD       E          Open            4  Residential
+                1256     2      GOLD       F      Park Facing         4  Residential
+76   H201       878      2     SILVER      G   Highway Facing         3  Residential
+                1745     2   PLATINUM      H   Highway Facing         5  Residential
+77   A202       1256     2      GOLD       A       East Open          4  Residential
+                1256     2      GOLD       B      Park Facing         4  Residential
+78   B202       1745     2   PLATINUM      C                          5  Residential
+                                                      Park
+79   C202                                         West Open
+                                              Park Facing / West
+80   D202
+                                                      Open
+81   E202
+
+82   F202
+
+83   G202
+
+84   H202
+
+85   A203
+
+86   B203
+
+87   C203
+
+88   D203
+
+89   E203
+
+90   F203
+
+91   G203
+
+92   H203
+
+93   A204
+
+94   B204
+
+95   C204
+
+96   D204
+
+97   E204
+
+98   F204
+
+99   G204
+
+100  H204
+
+101  A205
+
+102  B205
+
+103  C205
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+104  D205       878      2     SILVER      D      Park Facing         3  Residential
+                1256     2      GOLD       E       East Open          4  Residential
+105  E205       1256     2      GOLD       F       East Open          4  Residential
+                878      2     SILVER      G       East Open          3  Residential
+106  F205       1745     2   PLATINUM      H      Park Facing         5  Residential
+                1256     2      GOLD       A                          4  Residential
+107  G205       1256     2      GOLD       B          Park            4  Residential
+                1745     2   PLATINUM      C      West Open           5  Residential
+108  H205                                     Park Facing / West
+                878      2     SILVER      D                          3  Residential
+109  A206       1256     2      GOLD       E          Open            4  Residential
+                1256     2      GOLD       F      Park Facing         4  Residential
+110  B206       878      2     SILVER      G       East Open          3  Residential
+                1745     2   PLATINUM      H       East Open          5  Residential
+111  C206       1256     2      GOLD       A       East Open          4  Residential
+                1256     2      GOLD       B      Park Facing         4  Residential
+112  D206       878      2     SILVER      D      West Open           3  Residential
+                1256     2      GOLD       E                          4  Residential
+113  E206       1256     2      GOLD       F          Park            4  Residential
+                878      2     SILVER      G      West Open           3  Residential
+114  F206       1256     2      GOLD       A       East Open          4  Residential
+                1256     2      GOLD       B       East Open          4  Residential
+115  G206       878      2     SILVER      D      West Open           3  Residential
+                1256     2      GOLD       E      West Open           4  Residential
+116  H206       1256     2      GOLD       F                          4  Residential
+                878      2     SILVER      G          Park            3  Residential
+117  A207       878      2     SILVER      D      West Open           3  Residential
+                878      2     SILVER      G       East Open          3  Residential
+118  B207       878      2     SILVER      D       East Open          3  Residential
+                878      2     SILVER      G      West Open           3  Residential
+119  D207       878      2     SILVER      D      West Open           3  Residential
+                878      2     SILVER      G      West Open           3  Residential
+120  E207       878      2     SILVER      D      West Open           3  Residential
+                878      2     SILVER      G      West Open           3  Residential
+121  F207       1256     3      GOLD       A      West Open           4  Residential
+                1256     3      GOLD       B      West Open           4  Residential
+122  G207       1745     3   PLATINUM      C      West Open           5  Residential
+                878      3     SILVER      D      West Open           3  Residential
+123  A208       1256     3      GOLD       E   Neavy Merchant         4  Residential
+                1256     3      GOLD       F   Neavy Merchant         4  Residential
+124  B208       878      3     SILVER      G       East Open          3  Residential
+                1745     3   PLATINUM      H       East Open          5  Residential
+125  D208       1256     3      GOLD       A   Highway Facing         4  Residential
+                1256     3      GOLD       B   Highway Facing         4  Residential
+126  E208       1745     3   PLATINUM      C      Park Facing         5  Residential
+                878      3     SILVER      D      West Open           3  Residential
+127  F208       1256     3      GOLD       E   Neavy Merchant         4  Residential
+                1256     3      GOLD       F   Neavy Merchant         4  Residential
+128  G208       878      3     SILVER      G       East Open          3  Residential
+                1745     3   PLATINUM      H       East Open          5  Residential
+129  D209       1256     3      GOLD       A   Highway Facing         4  Residential
+                1256     3      GOLD       B   Highway Facing         4  Residential
+130  G209       1745     3   PLATINUM      C      Park Facing         5  Residential
+                                                  West Open
+131  D210                                      Neavy Merchant
+                                               Neavy Merchant
+132  G210                                          East Open
+
+133  D211
+
+134  G211
+
+135  D212
+
+136  G212
+
+137  A301
+
+138  B301
+
+139  C301
+
+140  D301
+
+141  E301
+
+142  F301
+
+143  G301
+
+144  H301
+
+145  A302
+
+146  B302
+
+147  C302
+
+148  D302
+
+149  E302
+
+150  F302
+
+151  G302
+
+152  H302
+
+153  A303
+
+154  B303
+
+155  C303
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+156  D303       878      3     SILVER      D       East Open          3  Residential
+                1256     3      GOLD       E   Highway Facing         4  Residential
+157  E303       1256     3      GOLD       F   Highway Facing         4  Residential
+                878      3     SILVER      G                          3  Residential
+158  F303       1745     3   PLATINUM      H      Park Facing         5  Residential
+                1256     3      GOLD       A      West Open           4  Residential
+159  G303       1256     3      GOLD       B   Neavy Merchant         4  Residential
+                1745     3   PLATINUM      C   Neavy Merchant         5  Residential
+160  H303                                     Park Facing / West
+                878      3     SILVER      D                          3  Residential
+161  A304       1256     3      GOLD       E          Open            4  Residential
+                1256     3      GOLD       F      Park Facing         4  Residential
+162  B304       878      3     SILVER      G   Highway Facing         3  Residential
+                1745     3   PLATINUM      H   Highway Facing         5  Residential
+163  C304       1256     3      GOLD       A       East Open          4  Residential
+                1256     3      GOLD       B      Park Facing         4  Residential
+164  D304       1745     3   PLATINUM      C                          5  Residential
+                                                      Park
+165  E304       878      3     SILVER      D      West Open           3  Residential
+                1256     3      GOLD       E  Park Facing / West      4  Residential
+166  F304       1256     3      GOLD       F                          4  Residential
+                878      3     SILVER      G          Open            3  Residential
+167  G304       1745     3   PLATINUM      H      Park Facing         5  Residential
+                1256     3      GOLD       A       East Open          4  Residential
+168  H304       1256     3      GOLD       B       East Open          4  Residential
+                1745     3   PLATINUM      C       East Open          5  Residential
+169  A305                                         Park Facing
+                878      3     SILVER      D                          3  Residential
+170  B305       1256     3      GOLD       E          Park            4  Residential
+                1256     3      GOLD       F      West Open           4  Residential
+171  C305       878      3     SILVER      G  Park Facing / West      3  Residential
+                1745     3   PLATINUM      H                          5  Residential
+172  D305       1256     3      GOLD       A          Open            4  Residential
+                1256     3      GOLD       B      Park Facing         4  Residential
+173  E305       878      3     SILVER      D       East Open          3  Residential
+                1256     3      GOLD       E       East Open          4  Residential
+174  F305       1256     3      GOLD       F       East Open          4  Residential
+                878      3     SILVER      G      Park Facing         3  Residential
+175  G305       1256     3      GOLD       A      West Open           4  Residential
+                1256     3      GOLD       E                          4  Residential
+176  H305       1256     3      GOLD       B          Park            4  Residential
+                878      3     SILVER      D      West Open           3  Residential
+177  A306       1256     1      GOLD       E       East Open          4  Residential
+                1256     3      GOLD       F       East Open          4  Residential
+178  B306       878      3     SILVER      G      West Open           3  Residential
+                878      3     SILVER      D      West Open           3  Residential
+179  C306       878      3     SILVER      G       East Open          3  Residential
+                878      3     SILVER      D                          3  Residential
+180  D306       878      3     SILVER      G          Park            3  Residential
+                878      3     SILVER      D      West Open           3  Residential
+181  E306       878      3     SILVER      G   Highway Facing         3  Residential
+                878      3     SILVER      D       East Open          3  Residential
+182  F306       878      3     SILVER      G      West Open           3  Residential
+                1256     4      GOLD       A      West Open           4  Residential
+183  G306                                         West Open
+                                                  West Open
+184  H306                                         West Open
+                                                  West Open
+185  A307                                         West Open
+                                                  West Open
+186  B307                                         West Open
+                                               Neavy Merchant
+187  D307
+
+188  E307
+
+189  F307
+
+190  G307
+
+191  A308
+
+192  A308
+
+193  B308
+
+194  D308
+
+195  E308
+
+196  F308
+
+197  G308
+
+198  D309
+
+199  G309
+
+200  D310
+
+201  G310
+
+202  D311
+
+203  G311
+
+204  D312
+
+205  G312
+
+206  A401
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+207  B401       1256     4      GOLD       B   Neavy Merchant         4  Residential
+                1745     4   PLATINUM      C       East Open          5  Residential
+208  C401       878      4                 D       East Open          3  Residential
+                1256     4     SILVER      E                          4  Residential
+209  D401       1256     4      GOLD       F   Highway Facing         4  Residential
+                878      4      GOLD       G   Highway Facing         3  Residential
+210  E401       1745     4     SILVER      H                          5  Residential
+                1256     4   PLATINUM      A      Park Facing         4  Residential
+211  F401       1256     4      GOLD       B      West Open           4  Residential
+                1745     4      GOLD       C   Neavy Merchant         5  Residential
+212  G401       878      4   PLATINUM      D   Neavy Merchant         3  Residential
+                1256     4     SILVER      E       East Open          4  Residential
+213  H401       1256     4      GOLD       F       East Open          4  Residential
+                878      4      GOLD       G   Highway Facing         3  Residential
+214  A402       1745     4     SILVER      H   Highway Facing         5  Residential
+                1256     4   PLATINUM      A      Park Facing         4  Residential
+215  B402       1256     4      GOLD       B      West Open           4  Residential
+                1745     4      GOLD       C   Neavy Merchant         5  Residential
+216  C402       878      4   PLATINUM      D   Neavy Merchant         3  Residential
+                1256     4     SILVER      E       East Open          4  Residential
+217  D402       1256     4      GOLD       F       East Open          4  Residential
+                878      4      GOLD       G   Highway Facing         3  Residential
+218  E402       1745     4     SILVER      H   Highway Facing         5  Residential
+                1256     4   PLATINUM      A      Park Facing         4  Residential
+219  F402       1256     4      GOLD       B      West Open           4  Residential
+                1745     4      GOLD       C   Neavy Merchant         5  Residential
+220  G402                    PLATINUM          Neavy Merchant
+                878      4                 D  Park Facing / West      3  Residential
+221  H402       1256     4     SILVER      E                          4  Residential
+                1256     4      GOLD       F          Open            4  Residential
+222  A403       878      4      GOLD       G      Park Facing         3  Residential
+                1745     4     SILVER      H   Highway Facing         5  Residential
+223  B403       1256     4   PLATINUM      A   Highway Facing         4  Residential
+                1256     4      GOLD       B       East Open          4  Residential
+224  C403       1745     4      GOLD       C      Park Facing         5  Residential
+                             PLATINUM
+225  D403       878      4                 D          Park            3  Residential
+                1256     4     SILVER      E      West Open           4  Residential
+226  E403       1256     4      GOLD       F  Park Facing / West      4  Residential
+                878      4      GOLD       G                          3  Residential
+227  F403       1745     4     SILVER      H          Open            5  Residential
+                1256     4   PLATINUM      A      Park Facing         4  Residential
+228  G403       1256     4      GOLD       B       East Open          4  Residential
+                1745     4      GOLD       C       East Open          5  Residential
+229  H403                    PLATINUM              East Open
+                878      4                 D      Park Facing         3  Residential
+230  A404       1256     4     SILVER      E                          4  Residential
+                1256     4      GOLD       F          Park            4  Residential
+231  B404       878      4      GOLD       G      West Open           3  Residential
+                1745     4     SILVER      H  Park Facing / West      5  Residential
+232  C404       1256     4   PLATINUM      A                          4  Residential
+                1256     4      GOLD       B          Open            4  Residential
+233  D404       878      4      GOLD       D      Park Facing         3  Residential
+                1256     4     SILVER      E       East Open          4  Residential
+234  E404                       GOLD               East Open
+                                                   East Open
+235  F404                                         Park Facing
+                                                  West Open
+236  G404
+                                                      Park
+237  H404                                         West Open
+                                                   East Open
+238  A405
+
+239  B405
+
+240  C405
+
+241  D405
+
+242  E405
+
+243  F405
+
+244  G405
+
+245  H405
+
+246  A406
+
+247  B406
+
+248  C406
+
+249  D406
+
+250  E406
+
+251  F406
+
+252  G406
+
+253  H406
+
+254  A407
+
+255  B407
+
+256  D407
+
+257  E407
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+258  F407       1256     4      GOLD       F       East Open          4  Residential
+                878      4     SILVER      G      West Open           3  Residential
+259  G407       1256     4      GOLD       A      West Open           4  Residential
+                1256     4      GOLD       B                          4  Residential
+260  A408       878      4     SILVER      D          Park            3  Residential
+                1256     4      GOLD       E      West Open           4  Residential
+261  B408       1256     4      GOLD       F       East Open          4  Residential
+                878      4     SILVER      G       East Open          3  Residential
+262  D408       878      4     SILVER      D      West Open           3  Residential
+                878      4     SILVER      G      West Open           3  Residential
+263  E408       878      4     SILVER      D      West Open           3  Residential
+                878      4     SILVER      G      West Open           3  Residential
+264  F408       878      4     SILVER      D      West Open           3  Residential
+                878      4     SILVER      G      West Open           3  Residential
+265  G408       878      4     SILVER      D      West Open           3  Residential
+                878      4     SILVER      G      West Open           3  Residential
+266  D409       1256     5      GOLD       A      West Open           4  Residential
+                1256     5      GOLD       B   Neavy Merchant         4  Residential
+267  G409       1745     5   PLATINUM      C   Neavy Merchant         5  Residential
+                878      5     SILVER      D       East Open          3  Residential
+268  D410       1256     5      GOLD       E       East Open          4  Residential
+                1256     5      GOLD       F   Highway Facing         4  Residential
+269  G410       878      5     SILVER      G   Highway Facing         3  Residential
+                1745     5   PLATINUM      H      Park Facing         5  Residential
+270  D411       1256     5      GOLD       A      West Open           4  Residential
+                1256     5      GOLD       B   Neavy Merchant         4  Residential
+271  G411       1745     5   PLATINUM      C   Neavy Merchant         5  Residential
+                878      5     SILVER      D       East Open          3  Residential
+272  D412       1256     5      GOLD       E       East Open          4  Residential
+                1256     5      GOLD       F   Highway Facing         4  Residential
+273  G412       878      5     SILVER      G   Highway Facing         3  Residential
+                1745     5   PLATINUM      H      Park Facing         5  Residential
+274  A501       1256     5      GOLD       A      West Open           4  Residential
+                1256     5      GOLD       B   Neavy Merchant         4  Residential
+275  B501       1745     5   PLATINUM      C   Neavy Merchant         5  Residential
+                878      5     SILVER      D       East Open          3  Residential
+276  C501       1256     5      GOLD       E       East Open          4  Residential
+                1256     5      GOLD       F   Highway Facing         4  Residential
+277  D501       878      5     SILVER      G   Highway Facing         3  Residential
+                1745     5   PLATINUM      H      Park Facing         5  Residential
+278  E501       1256     5      GOLD       A      West Open           4  Residential
+                1256     5      GOLD       B   Neavy Merchant         4  Residential
+279  F501       1745     5   PLATINUM      C   Neavy Merchant         5  Residential
+                                              Park Facing / West
+280  G501       878      5     SILVER      D                          3  Residential
+                1256     5      GOLD       E          Open            4  Residential
+281  H501       1256     5      GOLD       F      Park Facing         4  Residential
+                878      5     SILVER      G   Highway Facing         3  Residential
+282  A502       1745     5   PLATINUM      H   Highway Facing         5  Residential
+                1256     5      GOLD       A       East Open          4  Residential
+283  B502       1256     5      GOLD       B      Park Facing         4  Residential
+                1745     5   PLATINUM      C                          5  Residential
+284  C502                                             Park
+                878      5     SILVER      D      West Open           3  Residential
+285  D502                                     Park Facing / West
+
+286  E502                                             Open
+                                                  Park Facing
+287  F502
+
+288  G502
+
+289  H502
+
+290  A503
+
+291  B503
+
+292  C503
+
+293  D503
+
+294  E503
+
+295  F503
+
+296  G503
+
+297  H503
+
+298  A504
+
+299  B504
+
+300  C504
+
+301  D504
+
+302  E504
+
+303  F504
+
+304  G504
+
+305  H504
+
+306  A505
+
+307  B505
+
+308  C505
+
+309  D505
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+310  E505       1256     5      GOLD       E       East Open          4  Residential
+                1256     5      GOLD       F       East Open          4  Residential
+311  F505       878      5     SILVER      G       East Open          3  Residential
+                1745     5   PLATINUM      H      Park Facing         5  Residential
+312  G505       1256     5      GOLD       A                          4  Residential
+                1256     5      GOLD       B          Park            4  Residential
+313  H505       1745     5   PLATINUM      C      West Open           5  Residential
+                                              Park Facing / West
+314  A506       878      5     SILVER      D                          3  Residential
+                1256     5      GOLD       E          Open            4  Residential
+315  B506       1256     5      GOLD       F      Park Facing         4  Residential
+                878      5     SILVER      G       East Open          3  Residential
+316  C506       1745     5   PLATINUM      H       East Open          5  Residential
+                1256     5      GOLD       A       East Open          4  Residential
+317  D506       1256     5      GOLD       B      Park Facing         4  Residential
+                878      5     SILVER      D      West Open           3  Residential
+318  E506       1256     5      GOLD       E                          4  Residential
+                1256     5      GOLD       F          Park            4  Residential
+319  F506       878      5     SILVER      G      West Open           3  Residential
+                1256     5      GOLD       A       East Open          4  Residential
+320  G506       1256     5      GOLD       B       East Open          4  Residential
+                878      5     SILVER      D      West Open           3  Residential
+321  H506       1256     5      GOLD       E      West Open           4  Residential
+                1256     5      GOLD       F                          4  Residential
+322  A507       878      5     SILVER      G          Park            3  Residential
+                878      5     SILVER      D      West Open           3  Residential
+323  B507       878      5     SILVER      G       East Open          3  Residential
+                878      5     SILVER      D       East Open          3  Residential
+324  D507       878      5     SILVER      G      West Open           3  Residential
+                878      5     SILVER      D      West Open           3  Residential
+325  E507       878      5     SILVER      G      West Open           3  Residential
+                878      5     SILVER      D      West Open           3  Residential
+326  F507       878      5     SILVER      G      West Open           3  Residential
+                1256     6      GOLD       A      West Open           4  Residential
+327  G507       1256     6      GOLD       B      West Open           4  Residential
+                1745     6   PLATINUM      C      West Open           5  Residential
+328  A508       878      6     SILVER      D      West Open           3  Residential
+                1256     6      GOLD       E   Neavy Merchant         4  Residential
+329  B508       1256     6      GOLD       F   Neavy Merchant         4  Residential
+                878      6     SILVER      G       East Open          3  Residential
+330  D508       1745     6   PLATINUM      H       East Open          5  Residential
+                1256     6      GOLD       A   Highway Facing         4  Residential
+331  E508       1256     6      GOLD       B   Highway Facing         4  Residential
+                1745     6   PLATINUM      C      Park Facing         5  Residential
+332  F508       878      6     SILVER      D      West Open           3  Residential
+                1256     6      GOLD       E   Neavy Merchant         4  Residential
+333  G508       1256     6      GOLD       F   Neavy Merchant         4  Residential
+                878      6     SILVER      G       East Open          3  Residential
+334  D509       1745     6   PLATINUM      H       East Open          5  Residential
+                1256     6      GOLD       A   Highway Facing         4  Residential
+335  G509       1256     6      GOLD       B   Highway Facing         4  Residential
+                1745     6   PLATINUM      C      Park Facing         5  Residential
+336  D510       878      6     SILVER      D      West Open           3  Residential
+                                               Neavy Merchant
+337  G510                                      Neavy Merchant
+                                                   East Open
+338  D511                                          East Open
+
+339  G511
+
+340  D512
+
+341  G512
+
+342  A601
+
+343  B601
+
+344  C601
+
+345  D601
+
+346  E601
+
+347  F601
+
+348  G601
+
+349  H601
+
+350  A602
+
+351  B602
+
+352  C602
+
+353  D602
+
+354  E602
+
+355  F602
+
+356  G602
+
+357  H602
+
+358  A603
+
+359  B603
+
+360  C603
+
+361  D603
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+362  E603       1256     6      GOLD       E   Highway Facing         4  Residential
+                1256     6      GOLD       F   Highway Facing         4  Residential
+363  F603       878      6     SILVER      G                          3  Residential
+                1745     6   PLATINUM      H      Park Facing         5  Residential
+364  G603       1256     6      GOLD       A      West Open           4  Residential
+                1256     6      GOLD       B   Neavy Merchant         4  Residential
+365  H603       1745     6   PLATINUM      C   Neavy Merchant         5  Residential
+                                              Park Facing / West
+366  A604       878      6     SILVER      D                          3  Residential
+                1256     6      GOLD       E          Open            4  Residential
+367  B604       1256     6      GOLD       F      Park Facing         4  Residential
+                878      6     SILVER      G   Highway Facing         3  Residential
+368  C604       1745     6   PLATINUM      H   Highway Facing         5  Residential
+                1256     6      GOLD       A       East Open          4  Residential
+369  D604       1256     6      GOLD       B      Park Facing         4  Residential
+                1745     6   PLATINUM      C                          5  Residential
+370  E604                                             Park
+                878      6     SILVER      D      West Open           3  Residential
+371  F604       1256     6      GOLD       E  Park Facing / West      4  Residential
+                1256     6      GOLD       F                          4  Residential
+372  G604       878      6     SILVER      G          Open            3  Residential
+                1745     6   PLATINUM      H      Park Facing         5  Residential
+373  H604       1256     6      GOLD       A       East Open          4  Residential
+                1256     6      GOLD       B       East Open          4  Residential
+374  A605       1745     6   PLATINUM      C       East Open          5  Residential
+                                                  Park Facing
+375  B605       878      6     SILVER      D                          3  Residential
+                1256     6      GOLD       E          Park            4  Residential
+376  C605       1256     6      GOLD       F      West Open           4  Residential
+                878      6     SILVER      G  Park Facing / West      3  Residential
+377  D605       1745     6   PLATINUM      H                          5  Residential
+                1256     6      GOLD       A          Open            4  Residential
+378  E605       1256     6      GOLD       B      Park Facing         4  Residential
+                878      6     SILVER      D       East Open          3  Residential
+379  F605       1256     6      GOLD       E       East Open          4  Residential
+                1256     6      GOLD       F       East Open          4  Residential
+380  G605       878      6     SILVER      G      Park Facing         3  Residential
+                1256     6      GOLD       A      West Open           4  Residential
+381  H605       1256     6      GOLD       B                          4  Residential
+                878      6     SILVER      D          Park            3  Residential
+382  A606       1256     6      GOLD       E      West Open           4  Residential
+                1256     6      GOLD       F       East Open          4  Residential
+383  B606       878      6     SILVER      G       East Open          3  Residential
+                878      6     SILVER      D      West Open           3  Residential
+384  C606       878      6     SILVER      G      West Open           3  Residential
+                878      6     SILVER      D                          3  Residential
+385  D606       878      6     SILVER      G          Park            3  Residential
+                878      6     SILVER      D      West Open           3  Residential
+386  E606       878      6     SILVER      G       East Open          3  Residential
+                878      6     SILVER      D       East Open          3  Residential
+387  F606       878      6     SILVER      G      West Open           3  Residential
+                1256     7      GOLD       A      West Open           4  Residential
+388  G606       1256     6      GOLD       B      West Open           4  Residential
+                1745     7   PLATINUM      C      West Open           5  Residential
+389  H606                                         West Open
+                                                  West Open
+390  A607                                         West Open
+                                                  West Open
+391  B607                                         West Open
+                                               Neavy Merchant
+392  D607                                      Neavy Merchant
+                                                   East Open
+393  E607
+
+394  F607
+
+395  G607
+
+396  A608
+
+397  B608
+
+398  D608
+
+399  E608
+
+400  F608
+
+401  G608
+
+402  D609
+
+403  G609
+
+404  D610
+
+405  G610
+
+406  D611
+
+407  G611
+
+408  D612
+
+409  G612
+
+410  A701
+
+411  B701
+
+412  C701
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+413  D701       878      7     SILVER      D       East Open          3  Residential
+                1256     7      GOLD       E   Highway Facing         4  Residential
+414  E701       1256     7      GOLD       F   Highway Facing         4  Residential
+                878      7     SILVER      G                          3  Residential
+415  F701       1745     7   PLATINUM      H      Park Facing         5  Residential
+                1256     7      GOLD       A      West Open           4  Residential
+416  G701       1256     6      GOLD       B   Neavy Merchant         4  Residential
+                1745     7   PLATINUM      C   Neavy Merchant         5  Residential
+417  H701       878      7     SILVER      D       East Open          3  Residential
+                1256     7      GOLD       E       East Open          4  Residential
+418  A702       1256     7      GOLD       F   Highway Facing         4  Residential
+                878      7     SILVER      G   Highway Facing         3  Residential
+419  B702       1745     7   PLATINUM      H      Park Facing         5  Residential
+                1256     7      GOLD       A      West Open           4  Residential
+420  C702       1256     6      GOLD       B   Neavy Merchant         4  Residential
+                1745     7   PLATINUM      C   Neavy Merchant         5  Residential
+421  D702       878      7     SILVER      D       East Open          3  Residential
+                1256     7      GOLD       E       East Open          4  Residential
+422  E702       1256     7      GOLD       F   Highway Facing         4  Residential
+                878      7     SILVER      G   Highway Facing         3  Residential
+423  F702       1745     7   PLATINUM      H      Park Facing         5  Residential
+                1256     7      GOLD       A      West Open           4  Residential
+424  G702       1256     6      GOLD       B   Neavy Merchant         4  Residential
+                1745     7   PLATINUM      C   Neavy Merchant         5  Residential
+425  H702                                     Park Facing / West
+                878      7     SILVER      D                          3  Residential
+426  A703       1256     7      GOLD       E          Open            4  Residential
+                1256     7      GOLD       F      Park Facing         4  Residential
+427  B703       878      7     SILVER      G   Highway Facing         3  Residential
+                1745     7   PLATINUM      H   Highway Facing         5  Residential
+428  C703       1256     7      GOLD       A       East Open          4  Residential
+                1256     6      GOLD       B      Park Facing         4  Residential
+429  D703       1745     7   PLATINUM      C                          5  Residential
+                                                      Park
+430  E703       878      7     SILVER      D      West Open           3  Residential
+                1256     7      GOLD       E  Park Facing / West      4  Residential
+431  F703       1256     7      GOLD       F                          4  Residential
+                878      7     SILVER      G          Open            3  Residential
+432  G703       1745     7   PLATINUM      H      Park Facing         5  Residential
+                1256     7      GOLD       A       East Open          4  Residential
+433  H703       1256     6      GOLD       B       East Open          4  Residential
+                1745     7   PLATINUM      C       East Open          5  Residential
+434  A704                                         Park Facing
+                878      7     SILVER      D                          3  Residential
+435  B704       1256     7      GOLD       E          Park            4  Residential
+                1256     7      GOLD       F      West Open           4  Residential
+436  C704       878      7     SILVER      G  Park Facing / West      3  Residential
+                1745     7   PLATINUM      H                          5  Residential
+437  D704       1256     7      GOLD       A          Open            4  Residential
+                1256     6      GOLD       B      Park Facing         4  Residential
+438  E704       878      7     SILVER      D       East Open          3  Residential
+                1256     7      GOLD       E       East Open          4  Residential
+439  F704       1256     7      GOLD       F       East Open          4  Residential
+                878      7     SILVER      G      Park Facing         3  Residential
+440  G704                                         West Open
+
+441  H704                                             Park
+                                                  West Open
+442  A705                                          East Open
+                                                   East Open
+443  B705                                         West Open
+
+444  C705
+
+445  D705
+
+446  E705
+
+447  F705
+
+448  G705
+
+449  H705
+
+450  A706
+
+451  B706
+
+452  C706
+
+453  D706
+
+454  E706
+
+455  F706
+
+456  G706
+
+457  H706
+
+458  A707
+
+459  B707
+
+460  D707
+
+461  E707
+
+462  F707
+
+463  G707
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+464  A708       1256     7      GOLD       A      West Open           4  Residential
+                1256     6      GOLD       B          Park            4  Residential
+465  B708       878      7     SILVER      D                          3  Residential
+                1256     7      GOLD       E      West Open           4  Residential
+466  D708       1256     7      GOLD       F       East Open          4  Residential
+                878      7     SILVER      G       East Open          3  Residential
+467  E708       878      7     SILVER      D      West Open           3  Residential
+                878      7     SILVER      G      West Open           3  Residential
+468  F708       878      7     SILVER      D      West Open           3  Residential
+                878      7     SILVER      G      West Open           3  Residential
+469  G708       878      7     SILVER      D      West Open           3  Residential
+                878      7     SILVER      G      West Open           3  Residential
+470  D709       878      7     SILVER      D      West Open           3  Residential
+                878      7     SILVER      G      West Open           3  Residential
+471  G709       1256     8      GOLD       A      West Open           4  Residential
+                1256     8      GOLD       B   Neavy Merchant         4  Residential
+472  D710       1745     8   PLATINUM      C   Neavy Merchant         5  Residential
+                878      8     SILVER      D       East Open          3  Residential
+473  G710       1256     8      GOLD       E       East Open          4  Residential
+                1256     8      GOLD       F   Highway Facing         4  Residential
+474  D711       878      8     SILVER      G   Highway Facing         3  Residential
+                1745     8   PLATINUM      H      Park Facing         5  Residential
+475  G711       1256     8      GOLD       A      West Open           4  Residential
+                1256     8      GOLD       B   Neavy Merchant         4  Residential
+476  D712       1745     8   PLATINUM      C   Neavy Merchant         5  Residential
+                878      8     SILVER      D       East Open          3  Residential
+477  G712       1256     8      GOLD       E       East Open          4  Residential
+                1256     8      GOLD       F   Highway Facing         4  Residential
+478  A801       878      8     SILVER      G   Highway Facing         3  Residential
+                1745     8   PLATINUM      H      Park Facing         5  Residential
+479  B801       1256     8      GOLD       A      West Open           4  Residential
+                1256     8      GOLD       B   Neavy Merchant         4  Residential
+480  C801       1745     8   PLATINUM      C   Neavy Merchant         5  Residential
+                878      8     SILVER      D       East Open          3  Residential
+481  D801       1256     8      GOLD       E       East Open          4  Residential
+                1256     8      GOLD       F   Highway Facing         4  Residential
+482  E801       878      8     SILVER      G   Highway Facing         3  Residential
+                1745     8   PLATINUM      H      Park Facing         5  Residential
+483  F801       1256     8      GOLD       A      West Open           4  Residential
+                1256     8      GOLD       B   Neavy Merchant         4  Residential
+484  G801       1745     8   PLATINUM      C   Neavy Merchant         5  Residential
+                                              Park Facing / West
+485  H801       878      8     SILVER      D                          3  Residential
+                1256     8      GOLD       E          Open            4  Residential
+486  A802       1256     8      GOLD       F      Park Facing         4  Residential
+                878      8     SILVER      G   Highway Facing         3  Residential
+487  B802       1745     8   PLATINUM      H   Highway Facing         5  Residential
+                1256     8      GOLD       A       East Open          4  Residential
+488  C802       1256     8      GOLD       B      Park Facing         4  Residential
+                1745     8   PLATINUM      C                          5  Residential
+489  D802                                             Park
+                878      8     SILVER      D      West Open           3  Residential
+490  E802       1256     8      GOLD       E  Park Facing / West      4  Residential
+                1256     8      GOLD       F                          4  Residential
+491  F802                                             Open
+                                                  Park Facing
+492  G802                                          East Open
+                                                   East Open
+493  H802
+
+494  A803
+
+495  B803
+
+496  C803
+
+497  D803
+
+498  E803
+
+499  F803
+
+500  G803
+
+501  H803
+
+502  A804
+
+503  B804
+
+504  C804
+
+505  D804
+
+506  E804
+
+507  F804
+
+508  G804
+
+509  H804
+
+510  A805
+
+511  B805
+
+512  C805
+
+513  D805
+
+514  E805
+
+515  F805
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+516  G805       878      8     SILVER      G       East Open          3  Residential
+                1745     8   PLATINUM      H      Park Facing         5  Residential
+517  H805       1256     8                 A                          4  Residential
+                1256     8      GOLD       B          Park            4  Residential
+518  A806       1745     8      GOLD       C      West Open           5  Residential
+                             PLATINUM         Park Facing / West
+519  B806       878      8                 D                          3  Residential
+                1256     8     SILVER      E          Open            4  Residential
+520  C806       1256     8      GOLD       F      Park Facing         4  Residential
+                878      8      GOLD       G       East Open          3  Residential
+521  D806       1745     8     SILVER      H       East Open          5  Residential
+                1256     8   PLATINUM      A       East Open          4  Residential
+522  E806       1256     8      GOLD       B      Park Facing         4  Residential
+                878      8      GOLD       D      West Open           3  Residential
+523  F806       1256     8     SILVER      E                          4  Residential
+                1256     8      GOLD       F          Park            4  Residential
+524  G806       878      8      GOLD       G      West Open           3  Residential
+                1256     8     SILVER      A       East Open          4  Residential
+525  H806       1256     8      GOLD       B       East Open          4  Residential
+                878      8      GOLD       D      West Open           3  Residential
+526  A807       1256     8     SILVER      E      West Open           4  Residential
+                1256     8      GOLD       F                          4  Residential
+527  B807       878      8      GOLD       G          Park            3  Residential
+                878      8     SILVER      D      West Open           3  Residential
+528  D807       878      8     SILVER      G       East Open          3  Residential
+                878      8     SILVER      D       East Open          3  Residential
+529  E807       878      8     SILVER      G      West Open           3  Residential
+                878      8     SILVER      D      West Open           3  Residential
+530  F807       878      8     SILVER      G      West Open           3  Residential
+                878      8     SILVER      D      West Open           3  Residential
+531  G807       878      8     SILVER      G      West Open           3  Residential
+                1256     9     SILVER      A      West Open           4  Residential
+532  A808       1256     9      GOLD       B      West Open           4  Residential
+                1745     9      GOLD       C      West Open           5  Residential
+533  B808       878      9   PLATINUM      D      West Open           3  Residential
+                1256     9     SILVER      E   Neavy Merchant         4  Residential
+534  D808       1256     9      GOLD       F   Neavy Merchant         4  Residential
+                878      9      GOLD       G       East Open          3  Residential
+535  E808       1745     9     SILVER      H       East Open          5  Residential
+                1256     9   PLATINUM      A   Highway Facing         4  Residential
+536  F808       1256     9      GOLD       B   Highway Facing         4  Residential
+                1745     9      GOLD       C      Park Facing         5  Residential
+537  G808       878      9   PLATINUM      D      West Open           3  Residential
+                1256     9     SILVER      E   Neavy Merchant         4  Residential
+538  D809       1256     9      GOLD       F   Neavy Merchant         4  Residential
+                878      9      GOLD       G       East Open          3  Residential
+539  G809       1745     9     SILVER      H       East Open          5  Residential
+                1256     9   PLATINUM      A   Highway Facing         4  Residential
+540  D810       1256     9      GOLD       B   Highway Facing         4  Residential
+                1745     9      GOLD       C      Park Facing         5  Residential
+541  G810       878      9   PLATINUM      D      West Open           3  Residential
+                1256     9     SILVER      E   Neavy Merchant         4  Residential
+542  D811       1256     9      GOLD       F   Neavy Merchant         4  Residential
+                                GOLD               East Open
+543  G811                                          East Open
+                                               Highway Facing
+544  D812                                      Highway Facing
+
+545  G812
+
+546  A901
+
+547  B901
+
+548  C901
+
+549  D901
+
+550  E901
+
+551  F901
+
+552  G901
+
+553  H901
+
+554  A902
+
+555  B902
+
+556  C902
+
+557  D902
+
+558  E902
+
+559  F902
+
+560  G902
+
+561  H902
+
+562  A903
+
+563  B903
+
+564  C903
+
+565  D903
+
+566  E903
+
+567  F903
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+568  G903       878      9     SILVER      G      Park Facing         3  Residential
+                1745     9   PLATINUM      H      West Open           5  Residential
+569  H903       1256     9                 A   Neavy Merchant         4  Residential
+                1256     9      GOLD       B   Neavy Merchant         4  Residential
+570  A904       1745     9      GOLD       C  Park Facing / West      5  Residential
+                             PLATINUM
+571  B904       878      9                 D          Open            3  Residential
+                1256     9     SILVER      E      Park Facing         4  Residential
+572  C904       1256     9      GOLD       F   Highway Facing         4  Residential
+                878      9      GOLD       G   Highway Facing         3  Residential
+573  D904       1745     9     SILVER      H       East Open          5  Residential
+                1256     9   PLATINUM      A      Park Facing         4  Residential
+574  E904       1256     9      GOLD       B                          4  Residential
+                1745     9      GOLD       C          Park            5  Residential
+575  F904                    PLATINUM             West Open
+                878      9                 D  Park Facing / West      3  Residential
+576  G904       1256     9     SILVER      E                          4  Residential
+                1256     9      GOLD       F          Open            4  Residential
+577  H904       878      9      GOLD       G      Park Facing         3  Residential
+                1745     9     SILVER      H       East Open          5  Residential
+578  A905       1256     9   PLATINUM      A       East Open          4  Residential
+                1256     9      GOLD       B       East Open          4  Residential
+579  B905       1745     9      GOLD       C      Park Facing         5  Residential
+                             PLATINUM
+580  C905       878      9                 D          Park            3  Residential
+                1256     9     SILVER      E      West Open           4  Residential
+581  D905       1256     9      GOLD       F  Park Facing / West      4  Residential
+                878      9      GOLD       G                          3  Residential
+582  E905       1745     9     SILVER      H          Open            5  Residential
+                1256     9   PLATINUM      A      Park Facing         4  Residential
+583  F905       1256     9      GOLD       B       East Open          4  Residential
+                878      9      GOLD       D       East Open          3  Residential
+584  G905       1256     9     SILVER      E       East Open          4  Residential
+                1256     9      GOLD       F      Park Facing         4  Residential
+585  H905       878      9      GOLD       G      West Open           3  Residential
+                1256     9     SILVER      A                          4  Residential
+586  A906       1256     9      GOLD       B          Park            4  Residential
+                878      9      GOLD       D      West Open           3  Residential
+587  B906       1256     9     SILVER      E       East Open          4  Residential
+                1256     9      GOLD       F       East Open          4  Residential
+588  C906       878      9      GOLD       G      West Open           3  Residential
+                878      9     SILVER      D      West Open           3  Residential
+589  D906       878      9     SILVER      G                          3  Residential
+                878      9     SILVER      D          Park            3  Residential
+590  E906       878      9     SILVER      G      West Open           3  Residential
+                878      9     SILVER      D       East Open          3  Residential
+591  F906       878      9     SILVER      G       East Open          3  Residential
+                878      9     SILVER      D      West Open           3  Residential
+592  G906       878      9     SILVER      G      West Open           3  Residential
+                1256    10     SILVER      A      West Open           4  Residential
+593  H906       1256    10      GOLD       B      West Open           4  Residential
+                1745    10      GOLD       C      West Open           5  Residential
+594  A907       878     10   PLATINUM      D      West Open           3  Residential
+                1256    10     SILVER      E      West Open           4  Residential
+595  B907                       GOLD              West Open
+                                                  West Open
+596  D907                                      Neavy Merchant
+                                               Neavy Merchant
+597  E907                                          East Open
+                                                   East Open
+598  F907                                      Highway Facing
+
+599  G907
+
+600  A908
+
+601  B908
+
+602  D908
+
+603  E908
+
+604  F908
+
+605  G908
+
+606  D909
+
+607  G909
+
+608  D910
+
+609  G910
+
+610  D911
+
+611  G911
+
+612  D912
+
+613  G912
+
+614  A1001
+
+615  B1001
+
+616  C1001
+
+617  D1001
+
+618  E1001
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+619  F1001      1256    10      GOLD       F   Highway Facing         4  Residential
+                878     10     SILVER      G      Park Facing         3  Residential
+620  G1001      1745    10   PLATINUM      H      West Open           5  Residential
+                1256    10      GOLD       A                          4  Residential
+621  H1001      1256    10      GOLD       B   Neavy Merchant         4  Residential
+                1745    10   PLATINUM      C   Neavy Merchant         5  Residential
+622  A1002      878     10     SILVER      D                          3  Residential
+                1256    10      GOLD       E       East Open          4  Residential
+623  B1002      1256    10      GOLD       F       East Open          4  Residential
+                878     10     SILVER      G   Highway Facing         3  Residential
+624  C1002      1745    10   PLATINUM      H   Highway Facing         5  Residential
+                1256    10      GOLD       A      Park Facing         4  Residential
+625  D1002      1256    10      GOLD       B      West Open           4  Residential
+                1745    10   PLATINUM      C   Neavy Merchant         5  Residential
+626  E1002      878     10     SILVER      D   Neavy Merchant         3  Residential
+                1256    10      GOLD       E       East Open          4  Residential
+627  F1002      1256    10      GOLD       F       East Open          4  Residential
+                878     10     SILVER      G   Highway Facing         3  Residential
+628  G1002      1745    10   PLATINUM      H   Highway Facing         5  Residential
+                1256    10      GOLD       A      Park Facing         4  Residential
+629  H1002      1256    10      GOLD       B      West Open           4  Residential
+                1745    10   PLATINUM      C   Neavy Merchant         5  Residential
+630  A1003                                     Neavy Merchant
+                878     10     SILVER      D  Park Facing / West      3  Residential
+631  B1003      1256    10      GOLD       E                          4  Residential
+                1256    10      GOLD       F          Open            4  Residential
+632  C1003      878     10     SILVER      G      Park Facing         3  Residential
+                1745    10   PLATINUM      H   Highway Facing         5  Residential
+633  D1003      1256    10      GOLD       A   Highway Facing         4  Residential
+                1256    10      GOLD       B       East Open          4  Residential
+634  E1003      1745    10   PLATINUM      C      Park Facing         5  Residential
+
+635  F1003      878     10     SILVER      D          Park            3  Residential
+                1256    10      GOLD       E      West Open           4  Residential
+636  G1003      1256    10      GOLD       F  Park Facing / West      4  Residential
+                878     10     SILVER      G                          3  Residential
+637  H1003      1745    10   PLATINUM      H          Open            5  Residential
+                1256    10      GOLD       A      Park Facing         4  Residential
+638  A1004      1256    10      GOLD       B       East Open          4  Residential
+                1745    10   PLATINUM      C       East Open          5  Residential
+639  B1004                                         East Open
+                878     10     SILVER      D      Park Facing         3  Residential
+640  C1004      1256    10      GOLD       E                          4  Residential
+                1256    10      GOLD       F          Park            4  Residential
+641  D1004      878     10     SILVER      G      West Open           3  Residential
+                1745    10   PLATINUM      H  Park Facing / West      5  Residential
+642  E1004      1256    10      GOLD       A                          4  Residential
+                1256    10      GOLD       B          Open            4  Residential
+643  F1004      878     10     SILVER      D      Park Facing         3  Residential
+                1256    10      GOLD       E       East Open          4  Residential
+644  G1004      1256    10      GOLD       F       East Open          4  Residential
+                878     10     SILVER      G       East Open          3  Residential
+645  H1004      1256    10      GOLD       A      Park Facing         4  Residential
+                1256    10      GOLD       B      West Open           4  Residential
+646  A1005
+                                                      Park
+647  B1005                                        West Open
+                                                   East Open
+648  C1005                                         East Open
+                                                  West Open
+649  D1005                                        West Open
+
+650  E1005                                            Park
+
+651  F1005
+
+652  G1005
+
+653  H1005
+
+654  A1006
+
+655  B1006
+
+656  C1006
+
+657  D1006
+
+658  E1006
+
+659  F1006
+
+660  G1006
+
+661  H1006
+
+662  A1007
+
+663  B1007
+
+664  D1007
+
+665  E1007
+
+666  F1007
+
+667  G1007
+
+668  A1008
+
+669  B1008
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+670  D1008      878     10     SILVER      D      West Open           3  Residential
+                1256    10      GOLD       E       East Open          4  Residential
+671  E1008      1256    10      GOLD       F       East Open          4  Residential
+                878     10     SILVER      G      West Open           3  Residential
+672  F1008      878     10     SILVER      D      West Open           3  Residential
+                878     10     SILVER      G      West Open           3  Residential
+673  G1008      878     10     SILVER      D      West Open           3  Residential
+                878     10     SILVER      G      West Open           3  Residential
+674  D1009      878     10     SILVER      D      West Open           3  Residential
+                878     10     SILVER      G      West Open           3  Residential
+675  G1009      878     10     SILVER      D      West Open           3  Residential
+                878     10     SILVER      G      West Open           3  Residential
+676  D1010      1256    11      GOLD       A   Neavy Merchant         4  Residential
+                1256    11      GOLD       B   Neavy Merchant         4  Residential
+677  G1010      1745    11   PLATINUM      C       East Open          5  Residential
+                878     11     SILVER      D       East Open          3  Residential
+678  D1011      1256    11      GOLD       E   Highway Facing         4  Residential
+                1256    11      GOLD       F   Highway Facing         4  Residential
+679  G1011      878     11     SILVER      G      Park Facing         3  Residential
+                1745    11   PLATINUM      H      West Open           5  Residential
+680  D1012      1256    11      GOLD       A   Neavy Merchant         4  Residential
+                1256    11      GOLD       B   Neavy Merchant         4  Residential
+681  G1012      1745    11   PLATINUM      C       East Open          5  Residential
+                878     11     SILVER      D       East Open          3  Residential
+682  A1101      1256    11      GOLD       E   Highway Facing         4  Residential
+                1256    11      GOLD       F   Highway Facing         4  Residential
+683  B1101      878     11     SILVER      G      Park Facing         3  Residential
+                1745    11   PLATINUM      H      West Open           5  Residential
+684  C1101      1256    11      GOLD       A   Neavy Merchant         4  Residential
+                1256    11      GOLD       B   Neavy Merchant         4  Residential
+685  D1101      1745    11   PLATINUM      C       East Open          5  Residential
+                878     11     SILVER      D       East Open          3  Residential
+686  E1101      1256    11      GOLD       E   Highway Facing         4  Residential
+                1256    11      GOLD       F   Highway Facing         4  Residential
+687  F1101      878     11     SILVER      G      Park Facing         3  Residential
+                1745    11   PLATINUM      H      West Open           5  Residential
+688  G1101      1256    11      GOLD       A   Neavy Merchant         4  Residential
+                1256    11      GOLD       B   Neavy Merchant         4  Residential
+689  H1101      1745    11   PLATINUM      C  Park Facing / West      5  Residential
+
+690  A1102      878     11     SILVER      D          Open            3  Residential
+                1256    11      GOLD       E      Park Facing         4  Residential
+691  B1102      1256    11      GOLD       F   Highway Facing         4  Residential
+                878     11     SILVER      G   Highway Facing         3  Residential
+692  C1102      1745    11   PLATINUM      H       East Open          5  Residential
+                1256    11      GOLD       A      Park Facing         4  Residential
+693  D1102      1256    11      GOLD       B                          4  Residential
+                1745    11   PLATINUM      C          Park            5  Residential
+694  E1102                                        West Open
+                878     11     SILVER      D  Park Facing / West      3  Residential
+695  F1102      1256    11      GOLD       E                          4  Residential
+                1256    11      GOLD       F          Open            4  Residential
+696  G1102      878     11     SILVER      G      Park Facing         3  Residential
+                1745    11   PLATINUM      H       East Open          5  Residential
+697  H1102                                         East Open
+                                                   East Open
+698  A1103                                        Park Facing
+
+699  B1103
+
+700  C1103
+
+701  D1103
+
+702  E1103
+
+703  F1103
+
+704  G1103
+
+705  H1103
+
+706  A1104
+
+707  B1104
+
+708  C1104
+
+709  D1104
+
+710  E1104
+
+711  F1104
+
+712  G1104
+
+713  H1104
+
+714  A1105
+
+715  B1105
+
+716  C1105
+
+717  D1105
+
+718  E1105
+
+719  F1105
+
+720  G1105
+
+721  H1105
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+722  A1106      1256    11      GOLD       A          Park            4  Residential
+                1256    11      GOLD       B      West Open           4  Residential
+723  B1106      1745    11   PLATINUM      C  Park Facing / West      5  Residential
+
+724  C1106      878     11     SILVER      D          Open            3  Residential
+                1256    11      GOLD       E      Park Facing         4  Residential
+725  D1106      1256    11      GOLD       F       East Open          4  Residential
+                878     11     SILVER      G       East Open          3  Residential
+726  E1106      1745    11   PLATINUM      H       East Open          5  Residential
+                1256    11      GOLD       A      Park Facing         4  Residential
+727  F1106      1256    11      GOLD       B      West Open           4  Residential
+                878     11     SILVER      D                          3  Residential
+728  G1106      1256    11      GOLD       E          Park            4  Residential
+                1256    11      GOLD       F      West Open           4  Residential
+729  H1106      878     11     SILVER      G       East Open          3  Residential
+                1256    11      GOLD       A       East Open          4  Residential
+730  A1107      1256    11      GOLD       B      West Open           4  Residential
+                878     11     SILVER      D      West Open           3  Residential
+731  B1107      1256    11      GOLD       E                          4  Residential
+                1256    11      GOLD       F          Park            4  Residential
+732  D1107      878     11     SILVER      G      West Open           3  Residential
+                878     11     SILVER      D       East Open          3  Residential
+733  E1107      878     11     SILVER      G       East Open          3  Residential
+                878     11     SILVER      D      West Open           3  Residential
+734  F1107      878     11     SILVER      G      West Open           3  Residential
+                878     11     SILVER      D      West Open           3  Residential
+735  G1107      878     11     SILVER      G      West Open           3  Residential
+                878     11     SILVER      D      West Open           3  Residential
+736  A1108      878     11     SILVER      G      West Open           3  Residential
+                1256    12      GOLD       A      West Open           4  Residential
+737  B1108      1256    12      GOLD       B      West Open           4  Residential
+                1745    12   PLATINUM      C      West Open           5  Residential
+738  D1108      878     12     SILVER      D   Neavy Merchant         3  Residential
+                1256    12      GOLD       E   Neavy Merchant         4  Residential
+739  E1108      1256    12      GOLD       F       East Open          4  Residential
+                878     12     SILVER      G       East Open          3  Residential
+740  F1108      1745    12   PLATINUM      H   Highway Facing         5  Residential
+                1256    12      GOLD       A   Highway Facing         4  Residential
+741  G1108      1256    12      GOLD       B      Park Facing         4  Residential
+                1745    12   PLATINUM      C      West Open           5  Residential
+742  D1109      878     12     SILVER      D   Neavy Merchant         3  Residential
+                1256    12      GOLD       E   Neavy Merchant         4  Residential
+743  G1109      1256    12      GOLD       F       East Open          4  Residential
+                878     12     SILVER      G       East Open          3  Residential
+744  D1110      1745    12   PLATINUM      H   Highway Facing         5  Residential
+                1256    12      GOLD       A   Highway Facing         4  Residential
+745  G1110      1256    12      GOLD       B      Park Facing         4  Residential
+                1745    12   PLATINUM      C      West Open           5  Residential
+746  D1111      878     12     SILVER      D   Neavy Merchant         3  Residential
+                1256    12      GOLD       E   Neavy Merchant         4  Residential
+747  G1111      1256    12      GOLD       F       East Open          4  Residential
+                878     12     SILVER      G       East Open          3  Residential
+748  D1112      1745    12   PLATINUM      H   Highway Facing         5  Residential
+                                               Highway Facing
+749  G1112                                        Park Facing
+                                                  West Open
+750  A1201
+
+751  B1201
+
+752  C1201
+
+753  D1201
+
+754  E1201
+
+755  F1201
+
+756  G1201
+
+757  H1201
+
+758  A1202
+
+759  B1202
+
+760  C1202
+
+761  D1202
+
+762  E1202
+
+763  F1202
+
+764  G1202
+
+765  H1202
+
+766  A1203
+
+767  B1203
+
+768  C1203
+
+769  D1203
+
+770  E1203
+
+771  F1203
+
+772  G1203
+
+773  H1203
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+774  A1204      1256    12      GOLD       A   Neavy Merchant         4  Residential
+                1256    12      GOLD       B   Neavy Merchant         4  Residential
+775  B1204      1745    12   PLATINUM      C  Park Facing / West      5  Residential
+
+776  C1204      878     12     SILVER      D          Open            3  Residential
+                1256    12      GOLD       E      Park Facing         4  Residential
+777  D1204      1256    12      GOLD       F   Highway Facing         4  Residential
+                878     12     SILVER      G   Highway Facing         3  Residential
+778  E1204      1745    12   PLATINUM      H       East Open          5  Residential
+                1256    12      GOLD       A      Park Facing         4  Residential
+779  F1204      1256    12      GOLD       B                          4  Residential
+                1745    12   PLATINUM      C          Park            5  Residential
+780  G1204                                        West Open
+                878     12     SILVER      D  Park Facing / West      3  Residential
+781  H1204      1256    12      GOLD       E                          4  Residential
+                1256    12      GOLD       F          Open            4  Residential
+782  A1205      878     12     SILVER      G      Park Facing         3  Residential
+                1745    12   PLATINUM      H       East Open          5  Residential
+783  B1205      1256    12      GOLD       A       East Open          4  Residential
+                1256    12      GOLD       B       East Open          4  Residential
+784  C1205      1745    12   PLATINUM      C      Park Facing         5  Residential
+
+785  D1205      878     12     SILVER      D          Park            3  Residential
+                1256    12      GOLD       E      West Open           4  Residential
+786  E1205      1256    12      GOLD       F  Park Facing / West      4  Residential
+                878     12     SILVER      G                          3  Residential
+787  F1205      1745    12   PLATINUM      H          Open            5  Residential
+                1256    12      GOLD       A      Park Facing         4  Residential
+788  G1205      1256    12      GOLD       B       East Open          4  Residential
+                878     12     SILVER      D       East Open          3  Residential
+789  H1205      1256    12      GOLD       E       East Open          4  Residential
+                1256    12      GOLD       F      Park Facing         4  Residential
+790  A1206      878     12     SILVER      G      West Open           3  Residential
+                1256    12      GOLD       A                          4  Residential
+791  B1206      1256    12      GOLD       B          Park            4  Residential
+                878     12     SILVER      D      West Open           3  Residential
+792  C1206      1256    12      GOLD       E       East Open          4  Residential
+                1256    12      GOLD       F       East Open          4  Residential
+793  D1206      878     12     SILVER      G      West Open           3  Residential
+                878     12     SILVER      D      West Open           3  Residential
+794  E1206      878     12     SILVER      G                          3  Residential
+                878     12     SILVER      D          Park            3  Residential
+795  F1206      878     12     SILVER      G      West Open           3  Residential
+                878     12     SILVER      D       East Open          3  Residential
+796  G1206      878     12     SILVER      G       East Open          3  Residential
+                878     12     SILVER      D      West Open           3  Residential
+797  H1206      878     12     SILVER      G      West Open           3  Residential
+                1745    13   PLATINUM      C      West Open           5  Residential
+798  A1207      878     13     SILVER      D      West Open           3  Residential
+                1256    13      GOLD       E      West Open           4  Residential
+799  B1207      1256    13      GOLD       F      West Open           4  Residential
+                878     13     SILVER      G      West Open           3  Residential
+800  D1207      1745    13   PLATINUM      C      West Open           5  Residential
+                1745    13   PLATINUM      C      West Open           5  Residential
+801  E1207                                         East Open
+                                                   East Open
+802  F1207                                     Highway Facing
+                                               Highway Facing
+803  G1207                                        Park Facing
+                                                  West Open
+804  A1208                                         East Open
+
+805  B1208
+
+806  D1208
+
+807  E1208
+
+808  F1208
+
+809  G1208
+
+810  D1209
+
+811  G1209
+
+812  D1210
+
+813  G1210
+
+814  D1211
+
+815  G1211
+
+816  D1212
+
+817  G1212
+
+818  C1301
+
+819  D1301
+
+820  E1301
+
+821  F1301
+
+822  G1301
+
+823  H1301
+
+824  C1302
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower       Facing         Rooms    Type
+
+825  D1302      878     13     SILVER      D       East Open          3  Residential
+                1256    13      GOLD       E   Highway Facing         4  Residential
+826  E1302      1256    13      GOLD       F   Highway Facing         4  Residential
+                878     13     SILVER      G                          3  Residential
+827  F1302      1745    13   PLATINUM      C      Park Facing         5  Residential
+                1745    13   PLATINUM      C      West Open           5  Residential
+828  G1302      878     13     SILVER      D       East Open          3  Residential
+                1256    13      GOLD       E       East Open          4  Residential
+829  H1302      1256    13      GOLD       F   Highway Facing         4  Residential
+                878     13     SILVER      G   Highway Facing         3  Residential
+830  C1303      1745    13   PLATINUM      C      Park Facing         5  Residential
+                1745    13   PLATINUM      C      West Open           5  Residential
+831  D1303                                    Park Facing / West
+                878     13     SILVER      D                          3  Residential
+832  E1303      1256    13      GOLD       E          Open            4  Residential
+                1256    13      GOLD       F      Park Facing         4  Residential
+833  F1303      878     13     SILVER      G   Highway Facing         3  Residential
+                1745    13   PLATINUM      C   Highway Facing         5  Residential
+834  G1303      1745    13   PLATINUM      C       East Open          5  Residential
+                                                  Park Facing
+835  H1303      878     13     SILVER      D  Park Facing / West      3  Residential
+                1256    13      GOLD       E                          4  Residential
+836  C1304      1256    13      GOLD       F          Open            4  Residential
+                878     13     SILVER      G      Park Facing         3  Residential
+837  D1304      1745    13   PLATINUM      C       East Open          5  Residential
+                1745    13   PLATINUM      C       East Open          5  Residential
+838  E1304                                         East Open
+                878     13     SILVER      D      Park Facing         3  Residential
+839  F1304      1256    13      GOLD       E  Park Facing / West      4  Residential
+                1256    13      GOLD       F                          4  Residential
+840  G1304      878     13     SILVER      G          Open            3  Residential
+                1745    13   PLATINUM      C      Park Facing         5  Residential
+841  H1304      878     13     SILVER      D       East Open          3  Residential
+                1256    13      GOLD       E       East Open          4  Residential
+842  C1305      1256    13      GOLD       F       East Open          4  Residential
+                878     13     SILVER      G      Park Facing         3  Residential
+843  D1305      878     13     SILVER      D      West Open           3  Residential
+                1256    13      GOLD       E       East Open          4  Residential
+844  E1305      1256    13      GOLD       F       East Open          4  Residential
+                878     13     SILVER      G      West Open           3  Residential
+845  F1305      878     13     SILVER      D      West Open           3  Residential
+                878     13     SILVER      G       East Open          3  Residential
+846  G1305      878     13     SILVER      D       East Open          3  Residential
+                878     13     SILVER      G      West Open           3  Residential
+847  H1305      878     13     SILVER      D      West Open           3  Residential
+                878     13     SILVER      G      West Open           3  Residential
+848  C1306      878     13     SILVER      D      West Open           3  Residential
+                878     13     SILVER      G      West Open           3  Residential
+849  D1306      878     14     SILVER      D      West Open           3  Residential
+                1256    14      GOLD       E      West Open           4  Residential
+850  E1306      1256    14      GOLD       F      West Open           4  Residential
+                878     14     SILVER      G      West Open           3  Residential
+851  F1306      878     14     SILVER      D       East Open          3  Residential
+                1256    14      GOLD       E   Highway Facing         4  Residential
+852  G1306                                     Highway Facing
+                                                  Park Facing
+853  H1306                                         East Open
+                                               Highway Facing
+854  D1307
+
+855  E1307
+
+856  F1307
+
+857  G1307
+
+858  D1308
+
+859  E1308
+
+860  F1308
+
+861  G1308
+
+862  D1309
+
+863  G1309
+
+864  D1310
+
+865  G1310
+
+866  D1311
+
+867  G1311
+
+868  D1312
+
+869  G1312
+
+870  D1401
+
+871  E1401
+
+872  F1401
+
+873  G1401
+
+874  D1402
+
+875  E1402
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower     Facing       Rooms    Type
+
+876  F1402      1256    14      GOLD       F  Highway Facing      4  Residential
+                878     14     SILVER      G    Park Facing       3  Residential
+877  G1402      878     14     SILVER      D     East Open        3  Residential
+                1256    14      GOLD       E                      4  Residential
+878  D1403      1256    14      GOLD       F  Highway Facing      4  Residential
+                878     14     SILVER      G  Highway Facing      3  Residential
+879  E1403      878     14     SILVER      D                      3  Residential
+                1256    14      GOLD       E    Park Facing       4  Residential
+880  F1403      1256    14      GOLD       F    Park Facing       4  Residential
+                878     14     SILVER      G  Highway Facing      3  Residential
+881  G1403      878     14     SILVER      D  Highway Facing      3  Residential
+                1256    14      GOLD       E     East Open        4  Residential
+882  D1404      1256    14      GOLD       F    Park Facing       4  Residential
+                878     14     SILVER      G     East Open        3  Residential
+883  E1404      878     14     SILVER      D     East Open        3  Residential
+                1256    14      GOLD       E     East Open        4  Residential
+884  F1404      1256    14      GOLD       F    Park Facing       4  Residential
+                878     14     SILVER      G     East Open        3  Residential
+885  G1404      878     14     SILVER      D     East Open        3  Residential
+                1256    14      GOLD       E     East Open        4  Residential
+886  D1405      1256    14      GOLD       F    West Open         4  Residential
+                878     14     SILVER      G     East Open        3  Residential
+887  E1405      878     14     SILVER      D     East Open        3  Residential
+                1256    14      GOLD       E    West Open         4  Residential
+888  F1405      1256    14      GOLD       F    West Open         4  Residential
+                878     14     SILVER      G     East Open        3  Residential
+889  G1405      878     14     SILVER      D     East Open        3  Residential
+                878     14     SILVER      G    West Open         3  Residential
+890  D1406      878     14     SILVER      D    West Open         3  Residential
+                878     14     SILVER      G    West Open         3  Residential
+891  E1406      878     14     SILVER      D    West Open         3  Residential
+                878     14     SILVER      G    West Open         3  Residential
+892  F1406      878     14     SILVER      D    West Open         3  Residential
+                878     14     SILVER      G    West Open         3  Residential
+893  G1406      878     15     SILVER      D    West Open         3  Residential
+                1256    15      GOLD       E    West Open         4  Residential
+894  D1407      1256    15      GOLD       F     East Open        4  Residential
+                878     15     SILVER      G  Highway Facing      3  Residential
+895  E1407      878     15     SILVER      D  Highway Facing      3  Residential
+                1256    15      GOLD       E    Park Facing       4  Residential
+896  F1407      1256    15      GOLD       F     East Open        4  Residential
+                878     15     SILVER      G  Highway Facing      3  Residential
+897  G1407      878     15     SILVER      D  Highway Facing      3  Residential
+                1256    15      GOLD       E    Park Facing       4  Residential
+898  D1408      1256    15      GOLD       F     East Open        4  Residential
+                878     15     SILVER      G  Highway Facing      3  Residential
+899  E1408      878     15     SILVER      D  Highway Facing      3  Residential
+                1256    15      GOLD       E    Park Facing       4  Residential
+900  F1408      1256    15      GOLD       F    Park Facing       4  Residential
+                878     15     SILVER      G  Highway Facing      3  Residential
+901  G1408      878     15     SILVER      D  Highway Facing      3  Residential
+                1256    15      GOLD       E     East Open        4  Residential
+902  D1409      1256    15      GOLD       F    Park Facing       4  Residential
+                                                 East Open
+903  G1409                                       East Open
+
+904  D1410
+
+905  G1410
+
+906  D1411
+
+907  G1411
+
+908  D1412
+
+909  G1412
+
+910  D1501
+
+911  E1501
+
+912  F1501
+
+913  G1501
+
+914  D1502
+
+915  E1502
+
+916  F1502
+
+917  G1502
+
+918  D1503
+
+919  E1503
+
+920  F1503
+
+921  G1503
+
+922  D1504
+
+923  E1504
+
+924  F1504
+
+925  G1504
+
+926  D1505
+
+927  E1505
+
+928  F1505
+                             FM TOWERS
+
+Over All Flats
+
+Sr. Flat No     Size  Floor  Category  Tower     Facing       Rooms    Type
+
+929  G1505      878     15     SILVER      G     East Open        3  Residential
+                878     15     SILVER      D    Park Facing       3  Residential
+930  D1506      1256    15      GOLD       E     East Open        4  Residential
+                1256    15      GOLD       F     East Open        4  Residential
+931  E1506      878     15     SILVER      G     East Open        3  Residential
+                878     15     SILVER      D    West Open         3  Residential
+932  F1506      1256    15      GOLD       E     East Open        4  Residential
+                1256    15      GOLD       F     East Open        4  Residential
+933  G1506      878     15     SILVER      G    West Open         3  Residential
+                878     15     SILVER      D    West Open         3  Residential
+934  D1507      1256    15      GOLD       E     East Open        4  Residential
+                1256    15      GOLD       F     East Open        4  Residential
+935  E1507      878     15     SILVER      G    West Open         3  Residential
+                878     15     SILVER      D    West Open         3  Residential
+936  F1507      878     15     SILVER      G    West Open         3  Residential
+                878     15     SILVER      D    West Open         3  Residential
+937  G1507      878     15     SILVER      G    West Open         3  Residential
+                878     15     SILVER      D    West Open         3  Residential
+938  D1508      878     15     SILVER      G    West Open         3  Residential
+                878     15     SILVER      D    West Open         3  Residential
+939  E1508      878     15     SILVER      G    West Open         3  Residential
+                878     16     SILVER      D     East Open        3  Residential
+940  F1508      1256    16      GOLD       E  Highway Facing      4  Residential
+                1256    16      GOLD       F  Highway Facing      4  Residential
+941  G1508      878     16     SILVER      G    Park Facing       3  Residential
+                878     16     SILVER      D     East Open        3  Residential
+942  D1509      1256    16      GOLD       E  Highway Facing      4  Residential
+                1256    16      GOLD       F  Highway Facing      4  Residential
+943  G1509      878     16     SILVER      G    Park Facing       3  Residential
+                878     16     SILVER      D     East Open        3  Residential
+944  D1510      1256    16      GOLD       E  Highway Facing      4  Residential
+                1256    16      GOLD       F  Highway Facing      4  Residential
+945  G1510      878     16     SILVER      G    Park Facing       3  Residential
+                878     16     SILVER      D    Park Facing       3  Residential
+946  D1511      1256    16      GOLD       E  Highway Facing      4  Residential
+                1256    16      GOLD       F  Highway Facing      4  Residential
+947  G1511      878     16     SILVER      G     East Open        3  Residential
+                878     16     SILVER      D    Park Facing       3  Residential
+948  D1512      1256    16      GOLD       E     East Open        4  Residential
+                1256    16      GOLD       F     East Open        4  Residential
+949  G1512      878     16     SILVER      G     East Open        3  Residential
+                878     16     SILVER      D    Park Facing       3  Residential
+950  D1601      1256    16      GOLD       E     East Open        4  Residential
+                1256    16      GOLD       F     East Open        4  Residential
+951  E1601      878     16     SILVER      G     East Open        3  Residential
+                878     16     SILVER      D    West Open         3  Residential
+952  F1601      1256    16      GOLD       E     East Open        4  Residential
+                1256    16      GOLD       F     East Open        4  Residential
+953  G1601      878     16     SILVER      G    West Open         3  Residential
+                878     16     SILVER      D    West Open         3  Residential
+954  D1602      1256    16      GOLD       E     East Open        4  Residential
+                1256    16      GOLD       F     East Open        4  Residential
+955  E1602      878     16     SILVER      G    West Open         3  Residential
+
+956  F1602
+
+957  G1602
+
+958  D1603
+
+959  E1603
+
+960  F1603
+
+961  G1603
+
+962  D1604
+
+963  E1604
+
+964  F1604
+
+965  G1604
+
+966  D1605
+
+967  E1605
+
+968  F1605
+
+969  G1605
+
+970  D1606
+
+971  E1606
+
+972  F1606
+
+973  G1606
+
+974  D1607
+
+975  E1607
+
+976  F1607
+
+977  G1607
+
+978  D1608
+
+979  E1608
+
+980  F1608
+
+981  G1608
+                             FM TOWERS
+
+Over All Flats
+
+ Sr.  Flat No   Size  Floor  Category  Tower     Facing       Rooms    Type
+
+982    D1609    878     16     SILVER      D    West Open         3  Residential
+983    G1609    878     16     SILVER      G    West Open         3  Residential
+984    D1610    878     16     SILVER      D    West Open         3  Residential
+985    G1610    878     16     SILVER      G    West Open         3  Residential
+986    D1611    878     16     SILVER      D    West Open         3  Residential
+987    G1611    878     16     SILVER      G    West Open         3  Residential
+988    D1612    878     16     SILVER      D    West Open         3  Residential
+989    G1612    878     16     SILVER      G    West Open         3  Residential
+990    D1701    878     17     SILVER      D     East Open        3  Residential
+991    E1701    1256    17      GOLD       E  Highway Facing      4  Residential
+992    F1701    1256    17      GOLD       F  Highway Facing      4  Residential
+993    G1701    878     17     SILVER      G    Park Facing       3  Residential
+994    D1702    878     17     SILVER      D     East Open        3  Residential
+995    E1702    1256    17      GOLD       E  Highway Facing      4  Residential
+996    F1702    1256    17      GOLD       F  Highway Facing      4  Residential
+997    G1702    878     17     SILVER      G    Park Facing       3  Residential
+998    D1703    878     17     SILVER      D     East Open        3  Residential
+999    E1703    1256    17      GOLD       E  Highway Facing      4  Residential
+1000   F1703    1256    17      GOLD       F  Highway Facing      4  Residential
+1001   G1703    878     17     SILVER      G    Park Facing       3  Residential
+1002   D1704    878     17     SILVER      D    Park Facing       3  Residential
+1003   E1704    1256    17      GOLD       E  Highway Facing      4  Residential
+1004   F1704    1256    17      GOLD       F  Highway Facing      4  Residential
+1005   G1704    878     17     SILVER      G     East Open        3  Residential
+1006   D1705    878     17     SILVER      D    Park Facing       3  Residential
+1007   E1705    1256    17      GOLD       E     East Open        4  Residential
+1008   F1705    1256    17      GOLD       F     East Open        4  Residential
+1009   G1705    878     17     SILVER      G     East Open        3  Residential
+1010   D1706    878     17     SILVER      D    Park Facing       3  Residential
+1011   E1706    1256    17      GOLD       E     East Open        4  Residential
+1012   F1706    1256    17      GOLD       F     East Open        4  Residential
+1013   G1706    878     17     SILVER      G     East Open        3  Residential
+1014   D1707    878     17     SILVER      D    West Open         3  Residential
+1015   E1707    1256    17      GOLD       E     East Open        4  Residential
+1016   F1707    1256    17      GOLD       F     East Open        4  Residential
+1017   G1707    878     17     SILVER      G    West Open         3  Residential
+1018   D1708    878     17     SILVER      D    West Open         3  Residential
+1019   E1708    1256    17      GOLD       E     East Open        4  Residential
+1020   F1708    1256    17      GOLD       F     East Open        4  Residential
+1021   G1708    878     17     SILVER      G    West Open         3  Residential
+1022   D1709    878     17     SILVER      D    West Open         3  Residential
+1023   G1709    878     17     SILVER      G    West Open         3  Residential
+1024   D1710    878     17     SILVER      D    West Open         3  Residential
+1025   G1710    878     17     SILVER      G    West Open         3  Residential
+1026   D1711    878     17     SILVER      D    West Open         3  Residential
+1027   G1711    878     17     SILVER      G    West Open         3  Residential
+1028   D1712    878     17     SILVER      D    West Open         3  Residential
+1029   G1712    878     17     SILVER      G    West Open         3  Residential
+1030   D1801    878     18     SILVER      D     East Open        3  Residential
+1031   E1801    1256    18      GOLD       E  Highway Facing      4  Residential
+1032   F1801    1256    18      GOLD       F  Highway Facing      4  Residential
+1033   G1801    878     18     SILVER      G    Park Facing       3  Residential
+1034   D1802    878     18     SILVER      D     East Open        3  Residential
+                             FM TOWERS
+
+Over All Flats
+
+ Sr.  Flat No   Size  Floor  Category  Tower     Facing       Rooms    Type
+
+1035   E1802    1256    18      GOLD       E  Highway Facing      4  Residential
+1036   F1802    1256    18      GOLD       F  Highway Facing      4  Residential
+1037   G1802    878     18     SILVER      G                      3  Residential
+1038   D1803    878     18     SILVER      D    Park Facing       3  Residential
+1039   E1803    1256    18      GOLD       E     East Open        4  Residential
+1040   F1803    1256    18      GOLD       F  Highway Facing      4  Residential
+1041   G1803    878     18     SILVER      G  Highway Facing      3  Residential
+1042   D1804    878     18     SILVER      D    Park Facing       3  Residential
+1043   E1804    1256    18      GOLD       E    Park Facing       4  Residential
+1044   F1804    1256    18      GOLD       F  Highway Facing      4  Residential
+1045   G1804    878     18     SILVER      G  Highway Facing      3  Residential
+1046   D1805    878     18     SILVER      D     East Open        3  Residential
+1047   E1805    1256    18      GOLD       E    Park Facing       4  Residential
+1048   F1805    1256    18      GOLD       F     East Open        4  Residential
+1049   G1805    878     18     SILVER      G     East Open        3  Residential
+1050   D1806    878     18     SILVER      D     East Open        3  Residential
+1051   E1806    1256    18      GOLD       E    Park Facing       4  Residential
+1052   F1806    1256    18      GOLD       F     East Open        4  Residential
+1053   G1806    878     18     SILVER      G     East Open        3  Residential
+1054   D1807    878     18     SILVER      D     East Open        3  Residential
+1055   E1807    1256    18      GOLD       E    West Open         4  Residential
+1056   F1807    1256    18      GOLD       F     East Open        4  Residential
+1057   G1807    878     18     SILVER      G     East Open        3  Residential
+1058   D1808    878     18     SILVER      D    West Open         3  Residential
+1059   E1808    1256    18      GOLD       E    West Open         4  Residential
+1060   F1808    1256    18      GOLD       F     East Open        4  Residential
+1061   G1808    878     18     SILVER      G     East Open        3  Residential
+1062   D1809    878     18     SILVER      D    West Open         3  Residential
+1063   G1809    878     18     SILVER      G    West Open         3  Residential
+1064   D1810    878     18     SILVER      D    West Open         3  Residential
+1065   G1810    878     18     SILVER      G    West Open         3  Residential
+1066   D1811    878     18     SILVER      D    West Open         3  Residential
+1067   G1811    878     18     SILVER      G    West Open         3  Residential
+1068   D1812    878     18     SILVER      D    West Open         3  Residential
+1069   G1812    878     18     SILVER      G    West Open         3  Residential
+1070   D1901    878     19     SILVER      D    West Open         3  Pant House
+1071   E1901    1256    19      GOLD       E     East Open        4  Residential
+1072   F1901    1256    19      GOLD       F  Highway Facing      4  Residential
+1073   G1901    878     19     SILVER      G  Highway Facing      3  Pant House
+1074   D1902    878     19     SILVER      D    Park Facing       3  Pant House
+1075   E1902    1256    19      GOLD       E     East Open        4  Residential
+1076   F1902    1256    19      GOLD       F  Highway Facing      4  Residential
+1077   G1902    878     19     SILVER      G  Highway Facing      3  Pant House
+1078   D1903    878     19     SILVER      D    Park Facing       3  Pant House
+1079   E1903    1256    19      GOLD       E     East Open        4  Residential
+1080   F1903    1256    19      GOLD       F  Highway Facing      4  Residential
+1081   G1903    878     19     SILVER      G  Highway Facing      3  Pant House
+1082   D1904    878     19     SILVER      D     East Open        3  Pant House
+1083   E1904    1256    19      GOLD       E    Park Facing       4  Residential
+1084   F1904    1256    19      GOLD       F  Highway Facing      4  Residential
+1085   G1904    878     19     SILVER      G  Highway Facing      3  Pant House
+1086   D1905    878     19     SILVER      D     East Open        3  Pant House
+1087   E1905    1256    19      GOLD       E    West Open         4  Residential
+                                                 East Open
+                             FM TOWERS
+
+Over All Flats
+
+ Sr.  Flat No   Size  Floor  Category  Tower     Facing       Rooms    Type
+
+1088   F1905    1256    19      GOLD       F     East Open        4  Residential
+1089   G1905    878     19     SILVER      G    West Open         3  Pant House
+1090   D1906    878     19     SILVER      D    West Open         3  Pant House
+1091   E1906    1256    19      GOLD       E     East Open        4  Residential
+1092   F1906    1256    19      GOLD       F     East Open        4  Residential
+1093   G1906    878     19     SILVER      G    West Open         3  Pant House
+1094   D1907    878     19     SILVER      D    West Open         3  Pant House
+1095   E1907    1256    19      GOLD       E     East Open        4  Residential
+1096   F1907    1256    19      GOLD       F     East Open        4  Residential
+1097   G1907    878     19     SILVER      G    West Open         3  Pant House
+1098   D1908    878     19     SILVER      D    West Open         3  Pant House
+1099   E1908    1256    19      GOLD       E     East Open        4  Residential
+1100   F1908    1256    19      GOLD       F     East Open        4  Residential
+1101   G1908    878     19     SILVER      G    West Open         3  Pant House
+1102   D2001    878     20     SILVER      D     East Open        3  Pant House
+1103   E2001    1256    20      GOLD       E  Highway Facing      4  Pant House
+1104   F2001    1256    20      GOLD       F  Highway Facing      4  Pant House
+1105   G2001    878     20     SILVER      G    Park Facing       3  Pant House
+1106   D2002    878     20     SILVER      D     East Open        3  Pant House
+1107   E2002    1256    20      GOLD       E  Highway Facing      4  Pant House
+1108   F2002    1256    20      GOLD       F  Highway Facing      4  Pant House
+1109   G2002    878     20     SILVER      G    Park Facing       3  Pant House
+1110   D2003    878     20     SILVER      D     East Open        3  Pant House
+1111   E2003    1256    20      GOLD       E  Highway Facing      4  Pant House
+1112   F2003    1256    20      GOLD       F  Highway Facing      4  Pant House
+1113   G2003    878     20     SILVER      G    Park Facing       3  Pant House
+1114   D2004    878     20     SILVER      D    Park Facing       3  Pant House
+1115   E2004    1256    20      GOLD       E  Highway Facing      4  Pant House
+1116   F2004    1256    20      GOLD       F  Highway Facing      4  Pant House
+1117   G2004    878     20     SILVER      G     East Open        3  Pant House
+

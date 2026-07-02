@@ -10,6 +10,9 @@ import { Card } from "@/components/ui/card";
 
 const initialState: LoginActionState = { ok: true, message: "" };
 
+const DEMO_EMAIL = "admin@builder.local";
+const DEMO_PASSWORD = "admin123";
+
 export function LoginForm() {
   const [state, formAction, isPending] = useActionState(loginAction, initialState);
 
@@ -40,6 +43,7 @@ export function LoginForm() {
               placeholder="you@company.com"
               hint="Use your work email on file"
               autoComplete="email"
+              defaultValue={DEMO_EMAIL}
               required
               error={!state.ok ? state.fieldErrors?.email?.[0] : undefined}
             />
@@ -51,6 +55,7 @@ export function LoginForm() {
               className="!border-slate-300 !bg-white !text-slate-900 placeholder:!text-slate-400 dark:!border-slate-300 dark:!bg-white dark:!text-slate-900"
               placeholder="Enter your password"
               autoComplete="current-password"
+              defaultValue={DEMO_PASSWORD}
               required
               error={!state.ok ? state.fieldErrors?.password?.[0] : undefined}
             />
@@ -74,10 +79,7 @@ export function LoginForm() {
           </form>
 
           <p className="mt-6 rounded-xl bg-slate-500/5 px-3 py-2.5 text-center text-xs text-slate-600 dark:text-slate-400">
-            Demo account:{" "}
-            <span className="font-semibold text-slate-800 dark:text-slate-200">admin@builder.local</span>
-            <span className="mx-1 text-slate-400">·</span>
-            <span className="font-mono text-[0.7rem] text-slate-700 dark:text-slate-300">admin123</span>
+            Demo credentials are pre-filled — click Sign in.
           </p>
         </div>
       </Card>

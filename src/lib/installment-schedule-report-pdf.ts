@@ -1,17 +1,11 @@
 import type { CustomerInstallmentSummaryRow } from "@/lib/reports/installment-report-filters";
 import type { InstallmentScheduleRow } from "@/lib/reports/installment-schedule-row";
 
+import { drawFmReportPdfHeader, formatPkrPdf } from "@/lib/reports/report-pdf-header";
+
 function tableBottomY(doc: object): number {
   const t = doc as { lastAutoTable?: { finalY: number } };
   return t.lastAutoTable?.finalY ?? 40;
-}
-
-function formatMoneyPkr(n: number) {
-  return new Intl.NumberFormat("en-PK", {
-    style: "currency",
-    currency: "PKR",
-    maximumFractionDigits: 0,
-  }).format(Number.isFinite(n) ? n : 0);
 }
 
 function formatDate(iso: string) {
@@ -37,31 +31,14 @@ export async function downloadInstallmentScheduleReportPdf(
   const totalPaid = rows.reduce((a, r) => a + r.paidAmount, 0);
   const totalBal = rows.reduce((a, r) => a + r.balance, 0);
 
-  doc.setFillColor(250, 250, 252);
-  doc.rect(0, 0, pageW, 28, "F");
-  doc.setDrawColor(79, 70, 229);
-  doc.setLineWidth(0.5);
-  doc.line(margin, 26, pageW - margin, 26);
-
-  doc.setTextColor(15, 23, 42);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(14);
-  doc.text("FM Towers", margin, 12);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(71, 85, 105);
-  doc.text(title, margin, 18);
-  doc.setFontSize(8);
-  doc.text(filterLine, margin, 23);
-  doc.text(
-    `Generated: ${new Date().toLocaleString("en-PK", { dateStyle: "medium", timeStyle: "short" })} · ${rows.length} row(s)`,
-    pageW - margin,
-    12,
-    { align: "right" },
-  );
+  const startY = drawFmReportPdfHeader(doc, {
+    title,
+    subtitle: filterLine,
+    metaRight: `${rows.length} row(s)`,
+  });
 
   autoTable(doc, {
-    startY: 32,
+    startY,
     head: [["Booking", "Status", "Customer", "CNIC", "Unit", "Plan", "#", "Due date", "Due", "Paid", "Balance", "Inst."]],
     body: rows.map((r) => [
       r.bookingNo,
@@ -72,9 +49,9 @@ export async function downloadInstallmentScheduleReportPdf(
       r.planName.length > 22 ? `${r.planName.slice(0, 20)}…` : r.planName,
       String(r.installmentNo),
       formatDate(r.dueDate),
-      formatMoneyPkr(r.dueAmount),
-      formatMoneyPkr(r.paidAmount),
-      formatMoneyPkr(r.balance),
+      formatPkrPdf(r.dueAmount),
+      formatPkrPdf(r.paidAmount),
+      formatPkrPdf(r.balance),
       r.status,
     ]),
     theme: "striped",
@@ -123,9 +100,9 @@ export async function downloadInstallmentScheduleReportPdf(
     startY: y,
     head: [["Summary (this export)", "Amount (PKR)"]],
     body: [
-      ["Total due", formatMoneyPkr(totalDue)],
-      ["Total paid", formatMoneyPkr(totalPaid)],
-      ["Outstanding balance", formatMoneyPkr(totalBal)],
+      ["Total due", formatPkrPdf(totalDue)],
+      ["Total paid", formatPkrPdf(totalPaid)],
+      ["Outstanding balance", formatPkrPdf(totalBal)],
     ],
     theme: "plain",
     styles: { fontSize: 9, cellPadding: 1.6, textColor: [15, 23, 42] },
@@ -198,9 +175,9 @@ export async function downloadCustomerSummaryReportPdf(
       r.customerCnic || "—",
       String(r.bookingCount),
       String(r.installmentCount),
-      formatMoneyPkr(r.totalDue),
-      formatMoneyPkr(r.totalPaid),
-      formatMoneyPkr(r.totalBalance),
+      formatPkrPdf(r.totalDue),
+      formatPkrPdf(r.totalPaid),
+      formatPkrPdf(r.totalBalance),
     ]),
     theme: "striped",
     headStyles: { fillColor: [79, 70, 229], textColor: 255, fontStyle: "bold", fontSize: 9 },
@@ -233,9 +210,9 @@ export async function downloadCustomerSummaryReportPdf(
     startY: y,
     head: [["Totals", "PKR"]],
     body: [
-      ["Total due", formatMoneyPkr(totalDue)],
-      ["Total paid", formatMoneyPkr(totalPaid)],
-      ["Outstanding", formatMoneyPkr(totalBal)],
+      ["Total due", formatPkrPdf(totalDue)],
+      ["Total paid", formatPkrPdf(totalPaid)],
+      ["Outstanding", formatPkrPdf(totalBal)],
     ],
     theme: "plain",
     styles: { fontSize: 9.5, cellPadding: 2 },

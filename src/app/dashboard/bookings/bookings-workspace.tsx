@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
 import { SelectField } from "@/components/ui/select-field";
+import { MergeBookingsPanel } from "@/components/booking/merge-bookings-panel";
 import { BookingForm } from "@/components/booking/booking-form";
 import { BookingsTable, type BookingRow } from "./bookings-table";
 
@@ -22,6 +23,14 @@ type BookingsWorkspaceProps = {
   startDate: string;
   endDate: string;
   projects: { code: string; name: string }[];
+  mergeCandidates: {
+    id: string;
+    bookingNo: string;
+    customerId: string;
+    customerName: string;
+    unitLabel: string;
+    status: string;
+  }[];
 };
 
 const steps = [
@@ -32,7 +41,7 @@ const steps = [
   { key: "finance", title: "Financial block", hint: "Pricing and payable figures" },
 ] as const;
 
-export function BookingsWorkspace({ rows, startDate, endDate, projects }: BookingsWorkspaceProps) {
+export function BookingsWorkspace({ rows, startDate, endDate, projects, mergeCandidates }: BookingsWorkspaceProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [showAddModal, setShowAddModal] = useState(false);
@@ -117,6 +126,8 @@ export function BookingsWorkspace({ rows, startDate, endDate, projects }: Bookin
             />
           </div>
         </Card>
+
+        <MergeBookingsPanel bookings={mergeCandidates} />
 
         <BookingsTable
           data={rows}
